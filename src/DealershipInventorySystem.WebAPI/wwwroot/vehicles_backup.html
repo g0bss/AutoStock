@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veículos - AutoStock</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">
+                    <img src="/imagens/Logoautostock.png" alt="AutoStock" class="logo-icon"> AutoStock
+                </div>
+                <div class="sidebar-subtitle">Gestão de Estoque</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="/dashboard.html">
+                    <img src="/images/Dashboard.png" alt="Dashboard" class="nav-icon"> Dashboard
+                </a></li>
+                <li><a href="/vehicles.html" class="active">
+                    <img src="/images/Veiculos.png" alt="Veículos" class="nav-icon"> Veículos
+                </a></li>
+                <li><a href="/manufacturers.html">
+                    <img src="/images/Fabricantes.png" alt="Fabricantes" class="nav-icon"> Fabricantes
+                </a></li>
+                <li><a href="/customers.html">
+                    <img src="/images/Clientes.png" alt="Clientes" class="nav-icon"> Clientes
+                </a></li>
+                <li><a href="/movements.html">
+                    <img src="/images/Movimentacoes.png" alt="Movimentações" class="nav-icon"> Movimentações
+                </a></li>
+                <li><a href="/users.html">
+                    <img src="/images/Usuarios.png" alt="Usuários" class="nav-icon"> Usuários
+                </a></li>
+                <li><a href="#" onclick="logout(); return false;" id="logout-btn">
+                    <img src="/images/Sair.png" alt="Sair" class="nav-icon"> Sair
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <h1 class="header-title">Gerenciamento de Veículos</h1>
+                <div class="user-menu">
+                    <button class="btn btn-primary" onclick="openVehicleModal()">
+                        <span>➕</span> Novo Veículo
+                    </button>
+                    <span class="user-name" id="user-name">Carregando...</span>
+                    <div class="user-avatar" id="user-avatar">A</div>
+                </div>
+            </div>
+
+            <!-- Vehicles Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Lista de Veículos</h2>
+                </div>
+                <div class="card-content">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>VIN</th>
+                                    <th>Marca/Modelo</th>
+                                    <th>Ano</th>
+                                    <th>Cor</th>
+                                    <th>Tipo</th>
+                                    <th>Status</th>
+                                    <th>Preço</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="vehicles-table">
+                                <tr>
+                                    <td colspan="8" class="text-center">Carregando veículos...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Vehicle Modal -->
+    <div id="vehicle-modal" class="modal-overlay" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Novo Veículo</h3>
+                <button class="modal-close" onclick="closeVehicleModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="vehicle-form">
+                    <input type="hidden" id="vehicle-id">
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="vin" class="form-label">VIN *</label>
+                            <input type="text" id="vin" class="form-input" required maxlength="17" placeholder="17 caracteres">
+                        </div>
+                        <div class="form-group">
+                            <label for="make" class="form-label">Marca *</label>
+                            <input type="text" id="make" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="model" class="form-label">Modelo *</label>
+                            <input type="text" id="model" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="year" class="form-label">Ano *</label>
+                            <input type="number" id="year" class="form-input" required min="1900" max="2030">
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="color" class="form-label">Cor *</label>
+                            <input type="text" id="color" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="type" class="form-label">Tipo *</label>
+                            <select id="type" class="form-select" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="0">Novo</option>
+                                <option value="1">Semi-novo</option>
+                                <option value="2">Usado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="fuel-type" class="form-label">Combustível *</label>
+                            <select id="fuel-type" class="form-select" required>
+                                <option value="">Selecione o combustível</option>
+                                <option value="0">Gasolina</option>
+                                <option value="1">Álcool</option>
+                                <option value="2">Flex</option>
+                                <option value="3">Diesel</option>
+                                <option value="4">Elétrico</option>
+                                <option value="5">Híbrido</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="transmission-type" class="form-label">Transmissão *</label>
+                            <select id="transmission-type" class="form-select" required>
+                                <option value="">Selecione a transmissão</option>
+                                <option value="0">Manual</option>
+                                <option value="1">Automático</option>
+                                <option value="2">CVT</option>
+                                <option value="3">Semi-automático</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="mileage" class="form-label">Quilometragem</label>
+                            <input type="number" id="mileage" class="form-input" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="manufacturer-id" class="form-label">Fabricante *</label>
+                            <select id="manufacturer-id" class="form-select" required>
+                                <option value="">Carregando...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="cost-price" class="form-label">Preço de Custo *</label>
+                            <input type="number" id="cost-price" class="form-input" required min="0" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label for="selling-price" class="form-label">Preço de Venda *</label>
+                            <input type="number" id="selling-price" class="form-input" required min="0" step="0.01">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes" class="form-label">Observações</label>
+                        <textarea id="notes" class="form-input" rows="3" style="min-height: 80px; resize: vertical;"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeVehicleModal()">Cancelar</button>
+                <button type="submit" form="vehicle-form" class="btn btn-primary" id="save-btn">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script>
+        // ROBUST IMPLEMENTATION - GUARANTEE FUNCTIONALITY
+        console.log('=== VEHICLES PAGE LOADING ===');
+
+        let vehicles = [];
+        let manufacturers = [];
+        let editingVehicleId = null;
+        let pageInitialized = false;
+
+        // IMMEDIATE GLOBAL FUNCTION REGISTRATION
+
+        window.openVehicleModal = function(vehicle = null) {
+            console.log('OPEN VEHICLE MODAL CLICKED', vehicle);
+            try {
+                editingVehicleId = vehicle?.id || null;
+
+                const modal = document.getElementById('vehicle-modal');
+                const title = document.getElementById('modal-title');
+
+                if (!modal || !title) {
+                    console.error('Modal elements not found');
+                    alert('Erro: Modal não encontrado');
+                    return;
+                }
+
+                title.textContent = vehicle ? 'Editar Veículo' : 'Novo Veículo';
+
+                if (vehicle) {
+                    // Fill form with vehicle data
+                    const fields = {
+                        'vehicle-id': vehicle.id,
+                        'vin': vehicle.vin || '',
+                        'make': vehicle.make || '',
+                        'model': vehicle.model || '',
+                        'year': vehicle.year || '',
+                        'color': vehicle.color || '',
+                        'type': vehicle.type ?? '',
+                        'fuel-type': vehicle.fuelType ?? '',
+                        'transmission-type': vehicle.transmissionType ?? '',
+                        'mileage': vehicle.mileage || '',
+                        'manufacturer-id': vehicle.manufacturerId || '',
+                        'cost-price': vehicle.costPrice || '',
+                        'selling-price': vehicle.sellingPrice || '',
+                        'notes': vehicle.notes || ''
+                    };
+
+                    Object.entries(fields).forEach(([id, value]) => {
+                        const element = document.getElementById(id);
+                        if (element) element.value = value;
+                    });
+                } else {
+                    // Clear form
+                    const form = document.getElementById('vehicle-form');
+                    if (form) form.reset();
+                    const hiddenId = document.getElementById('vehicle-id');
+                    if (hiddenId) hiddenId.value = '';
+                }
+
+                // Show modal with all required styles
+                modal.style.display = 'flex';
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.zIndex = '9999';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                document.body.style.overflow = 'hidden';
+
+                console.log('Modal shown successfully');
+            } catch (error) {
+                console.error('Error opening modal:', error);
+                alert('Erro ao abrir modal: ' + error.message);
+            }
+        };
+
+        window.closeVehicleModal = function() {
+            console.log('CLOSE VEHICLE MODAL CLICKED');
+            try {
+                const modal = document.getElementById('vehicle-modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+                editingVehicleId = null;
+                console.log('Modal closed successfully');
+            } catch (error) {
+                console.error('Error closing modal:', error);
+            }
+        };
+
+        // USER INFO UPDATE - ROBUST VERSION
+        function forceUpdateUserInfo() {
+            console.log('=== FORCE UPDATE USER INFO ===');
+            try {
+                const userNameElement = document.getElementById('user-name');
+                const userAvatarElement = document.getElementById('user-avatar');
+
+                console.log('User elements found:', !!userNameElement, !!userAvatarElement);
+
+                const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+                console.log('Current user from localStorage:', currentUser);
+
+                if (currentUser && Object.keys(currentUser).length > 0) {
+                    let displayName = 'Usuário';
+                    let avatarLetter = 'U';
+
+                    // Try multiple field formats
+                    if (currentUser.firstName || currentUser.FirstName) {
+                        const firstName = currentUser.firstName || currentUser.FirstName;
+                        const lastName = currentUser.lastName || currentUser.LastName || '';
+                        displayName = `${firstName} ${lastName}`.trim();
+                        avatarLetter = firstName.charAt(0).toUpperCase();
+                    } else if (currentUser.fullName || currentUser.FullName) {
+                        displayName = currentUser.fullName || currentUser.FullName;
+                        avatarLetter = displayName.charAt(0).toUpperCase();
+                    } else if (currentUser.userName || currentUser.UserName) {
+                        displayName = currentUser.userName || currentUser.UserName;
+                        avatarLetter = displayName.charAt(0).toUpperCase();
+                    } else if (currentUser.email || currentUser.Email) {
+                        const email = currentUser.email || currentUser.Email;
+                        displayName = email.split('@')[0];
+                        avatarLetter = displayName.charAt(0).toUpperCase();
+                    }
+
+                    if (userNameElement) {
+                        userNameElement.textContent = displayName;
+                        console.log('✅ User name set to:', displayName);
+                    }
+                    if (userAvatarElement) {
+                        userAvatarElement.textContent = avatarLetter;
+                        console.log('✅ Avatar set to:', avatarLetter);
+                    }
+                } else {
+                    // Fallback
+                    if (userNameElement) userNameElement.textContent = 'Administrador';
+                    if (userAvatarElement) userAvatarElement.textContent = 'A';
+                    console.log('Used fallback user info');
+                }
+            } catch (error) {
+                console.error('Error in forceUpdateUserInfo:', error);
+            }
+        }
+
+        // MULTIPLE INITIALIZATION ATTEMPTS
+        function initializePage() {
+            if (pageInitialized) return;
+
+            console.log('=== INITIALIZING PAGE ===');
+
+            // Force user info update immediately
+            forceUpdateUserInfo();
+
+            // Set up repeated updates
+            setInterval(forceUpdateUserInfo, 3000);
+
+            // Try to load data
+            if (window.api && typeof window.api.getVehicles === 'function') {
+                loadData();
+            } else {
+                console.warn('API not ready, retrying in 500ms');
+                setTimeout(() => {
+                    if (window.api) loadData();
+                }, 500);
+            }
+
+            pageInitialized = true;
+        }
+
+        // AUTHENTICATION CHECK
+        function checkAuth() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                console.log('No auth token, redirecting to login');
+                window.location.href = '/login.html';
+                return false;
+            }
+            return true;
+        }
+
+        // Check auth immediately
+        if (!checkAuth()) {
+            // Don't continue if not authenticated
+        } else {
+            // MULTIPLE DOM READY LISTENERS
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initializePage);
+            } else {
+                initializePage();
+            }
+
+            // Backup initialization
+            setTimeout(initializePage, 1000);
+            setTimeout(initializePage, 3000);
+        }
+
+        async function loadData() {
+            console.log('=== LOADING DATA ===');
+            try {
+                // Load vehicles and manufacturers in parallel
+                const [vehiclesData, manufacturersData] = await Promise.all([
+                    api.getVehicles(),
+                    api.getManufacturers()
+                ]);
+
+                vehicles = vehiclesData || [];
+                manufacturers = manufacturersData || [];
+
+                console.log('✅ Vehicles loaded:', vehicles.length);
+                console.log('✅ Manufacturers loaded:', manufacturers.length);
+
+                displayVehicles();
+                populateManufacturerSelect();
+
+            } catch (error) {
+                console.error('❌ Error loading data:', error);
+                // Fallback display
+                const tbody = document.getElementById('vehicles-table');
+                if (tbody) {
+                    tbody.innerHTML = '<tr><td colspan="8" class="text-center">Erro ao carregar dados</td></tr>';
+                }
+            }
+        }
+
+        function displayVehicles() {
+            const tbody = document.getElementById('vehicles-table');
+
+            if (vehicles.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" class="text-center">Nenhum veículo encontrado</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = vehicles.map(vehicle => {
+                const statusBadge = utils.getVehicleStatusBadge(vehicle.status);
+                const typeBadge = utils.getVehicleTypeBadge(vehicle.type);
+
+                return `
+                    <tr>
+                        <td>${vehicle.vin}</td>
+                        <td>${vehicle.make} ${vehicle.model}</td>
+                        <td>${vehicle.year}</td>
+                        <td>${vehicle.color}</td>
+                        <td><span class="badge ${typeBadge.class}">${typeBadge.text}</span></td>
+                        <td><span class="badge ${statusBadge.class}">${statusBadge.text}</span></td>
+                        <td>${utils.formatCurrency(vehicle.sellingPrice)}</td>
+                        <td>
+                            <div class="flex gap-2">
+                                <button class="btn btn-outline" onclick="editVehicle(${vehicle.id})" style="padding: 0.375rem 0.75rem;">✏️</button>
+                                <button class="btn btn-danger" onclick="deleteVehicle(${vehicle.id})" style="padding: 0.375rem 0.75rem;">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function populateManufacturerSelect() {
+            console.log('=== POPULATING MANUFACTURER SELECT ===');
+            const select = document.getElementById('manufacturer-id');
+            if (select) {
+                select.innerHTML = '<option value="">Selecione um fabricante</option>' +
+                    manufacturers.map(m => `<option value="${m.id}">${m.name}</option>`).join('');
+                console.log('✅ Manufacturer select populated');
+            }
+        }
+
+        // ADDITIONAL FUNCTIONS FOR EDIT/DELETE
+        window.editVehicle = function(id) {
+            console.log('EDIT VEHICLE CLICKED:', id);
+            const vehicle = vehicles.find(v => v.id === id);
+            if (vehicle) {
+                window.openVehicleModal(vehicle);
+            } else {
+                alert('Veículo não encontrado');
+            }
+        };
+
+        window.deleteVehicle = function(id) {
+            console.log('DELETE VEHICLE CLICKED:', id);
+            if (confirm('Tem certeza que deseja excluir este veículo?')) {
+                // TODO: Implement delete functionality
+                alert('Funcionalidade de exclusão será implementada');
+            }
+        };
+
+            // Show modal directly without relying on Modal object
+            const modal = document.getElementById('vehicle-modal');
+            if (modal) {
+                console.log('Showing modal directly');
+                modal.style.display = 'flex';
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.zIndex = '9999';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                document.body.style.overflow = 'hidden';
+                console.log('Modal shown successfully');
+            } else {
+                console.error('Modal element not found');
+            }
+        }
+
+        function closeVehicleModal() {
+            console.log('closeVehicleModal called');
+            const modal = document.getElementById('vehicle-modal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                console.log('Modal hidden successfully');
+            }
+            editingVehicleId = null;
+        }
+
+        async function editVehicle(id) {
+            const vehicle = vehicles.find(v => v.id === id);
+            if (vehicle) {
+                openVehicleModal(vehicle);
+            }
+        }
+
+        async function deleteVehicle(id) {
+            if (!confirm('Tem certeza que deseja excluir este veículo?')) {
+                return;
+            }
+
+            try {
+                await api.deleteVehicle(id);
+                vehicles = vehicles.filter(v => v.id !== id);
+                displayVehicles();
+                utils.showSuccess('Veículo excluído com sucesso!');
+            } catch (error) {
+                console.error('Error deleting vehicle:', error);
+                utils.showError('Erro ao excluir veículo: ' + error.message);
+            }
+        }
+
+        function setupEventListeners() {
+            // Form submission
+            document.getElementById('vehicle-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const saveBtn = document.getElementById('save-btn');
+                const originalText = saveBtn.textContent;
+                saveBtn.disabled = true;
+                saveBtn.textContent = 'Salvando...';
+
+                try {
+                    const formData = {
+                        vin: document.getElementById('vin').value,
+                        make: document.getElementById('make').value,
+                        model: document.getElementById('model').value,
+                        year: parseInt(document.getElementById('year').value),
+                        color: document.getElementById('color').value,
+                        type: parseInt(document.getElementById('type').value),
+                        fuelType: parseInt(document.getElementById('fuel-type').value),
+                        transmissionType: parseInt(document.getElementById('transmission-type').value),
+                        mileage: parseInt(document.getElementById('mileage').value) || 0,
+                        manufacturerId: parseInt(document.getElementById('manufacturer-id').value),
+                        costPrice: parseFloat(document.getElementById('cost-price').value),
+                        sellingPrice: parseFloat(document.getElementById('selling-price').value),
+                        notes: document.getElementById('notes').value || null
+                    };
+
+                    let savedVehicle;
+                    if (editingVehicleId) {
+                        savedVehicle = await api.updateVehicle(editingVehicleId, formData);
+                        // Update vehicle in array
+                        const index = vehicles.findIndex(v => v.id === editingVehicleId);
+                        if (index !== -1) {
+                            vehicles[index] = savedVehicle;
+                        }
+                        utils.showSuccess('Veículo atualizado com sucesso!');
+                    } else {
+                        savedVehicle = await api.createVehicle(formData);
+                        vehicles.push(savedVehicle);
+                        utils.showSuccess('Veículo criado com sucesso!');
+                    }
+
+                    displayVehicles();
+                    closeVehicleModal();
+
+                } catch (error) {
+                    console.error('Error saving vehicle:', error);
+                    utils.showError('Erro ao salvar veículo: ' + error.message);
+                } finally {
+                    saveBtn.disabled = false;
+                    saveBtn.textContent = originalText;
+                }
+            });
+
+            // VIN validation
+            document.getElementById('vin').addEventListener('input', (e) => {
+                const vin = e.target.value.toUpperCase();
+                e.target.value = vin;
+
+                if (vin.length === 17) {
+                    if (!utils.validateVIN(vin)) {
+                        e.target.setCustomValidity('VIN inválido. Use apenas letras (exceto I, O, Q) e números.');
+                    } else {
+                        e.target.setCustomValidity('');
+                    }
+                } else if (vin.length > 0) {
+                    e.target.setCustomValidity('VIN deve ter exatamente 17 caracteres.');
+                } else {
+                    e.target.setCustomValidity('');
+                }
+            });
+
+            // Modal close on backdrop click
+            document.getElementById('vehicle-modal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    closeVehicleModal();
+                }
+            });
+        }
+
+        // Global functions for HTML onclick - with debug
+        window.openVehicleModal = openVehicleModal;
+        window.closeVehicleModal = closeVehicleModal;
+        window.editVehicle = editVehicle;
+        window.deleteVehicle = deleteVehicle;
+
+        // Simple logout function
+        window.logout = function() {
+            console.log('LOGOUT CLICKED');
+            if (confirm('Tem certeza que deseja sair?')) {
+                localStorage.clear();
+                window.location.href = '/login.html';
+            }
+        };
+
+        // User profile update function
+        window.updateUserInfo = function() {
+            try {
+                const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+                console.log('UpdateUserInfo - Current user:', currentUser);
+
+                const userNameElement = document.getElementById('user-name');
+                const userAvatarElement = document.getElementById('user-avatar');
+
+                if (currentUser && Object.keys(currentUser).length > 0) {
+                    let displayName = 'Usuário';
+                    let avatarLetter = 'U';
+
+                    if (currentUser.firstName || currentUser.FirstName) {
+                        const firstName = currentUser.firstName || currentUser.FirstName;
+                        const lastName = currentUser.lastName || currentUser.LastName || '';
+                        displayName = `${firstName} ${lastName}`.trim();
+                        avatarLetter = firstName.charAt(0).toUpperCase();
+                    } else if (currentUser.fullName || currentUser.FullName) {
+                        displayName = currentUser.fullName || currentUser.FullName;
+                        avatarLetter = displayName.charAt(0).toUpperCase();
+                    } else if (currentUser.userName || currentUser.UserName) {
+                        displayName = currentUser.userName || currentUser.UserName;
+                        avatarLetter = displayName.charAt(0).toUpperCase();
+                    } else if (currentUser.email || currentUser.Email) {
+                        const email = currentUser.email || currentUser.Email;
+                        displayName = email.split('@')[0];
+                        avatarLetter = displayName.charAt(0).toUpperCase();
+                    }
+
+                    if (userNameElement) {
+                        userNameElement.textContent = displayName;
+                        console.log('Set user name to:', displayName);
+                    }
+
+                    if (userAvatarElement) {
+                        userAvatarElement.textContent = avatarLetter;
+                        console.log('Set avatar to:', avatarLetter);
+                    }
+                } else {
+                    if (userNameElement) {
+                        userNameElement.textContent = 'Administrador';
+                    }
+                    if (userAvatarElement) {
+                        userAvatarElement.textContent = 'A';
+                    }
+                }
+            } catch (error) {
+                console.error('Error updating user info:', error);
+            }
+        };
+
+        // Call immediately and set up periodic update
+        setTimeout(updateUserInfo, 100);
+        setInterval(updateUserInfo, 2000);
+
+        console.log('Vehicle page - Global functions registered:');
+        console.log('openVehicleModal:', typeof window.openVehicleModal);
+
+        // Test function availability immediately
+        if (typeof window.openVehicleModal === 'function') {
+            console.log('openVehicleModal is available globally');
+        } else {
+            console.error('openVehicleModal is NOT available globally');
+        }
+    </script>
+</body>
+</html>

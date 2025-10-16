@@ -1,0 +1,65 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\gabferrcosta\\Documents\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "C:\\Users\\gabferrcosta\\Documents\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\wwwroot\\customers.html",
+      "PackagePath": "staticwebassets\\customers.html"
+    },
+    {
+      "Id": "C:\\Users\\gabferrcosta\\Documents\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\wwwroot\\dashboard.html",
+      "PackagePath": "staticwebassets\\dashboard.html"
+    },
+    {
+      "Id": "C:\\Users\\gabferrcosta\\Documents\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Users\\gabferrcosta\\Documents\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\wwwroot\\js\\api.js",
+      "PackagePath": "staticwebassets\\js\\api.js"
+    },
+    {
+      "Id": "C:\\Users\\gabferrcosta\\Documents\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\wwwroot\\login.html",
+      "PackagePath": "staticwebassets\\login.html"
+    },
+    {
+      "Id": "C:\\Users\\gabferrcosta\\Documents\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\wwwroot\\manufacturers.html",
+      "PackagePath": "staticwebassets\\manufacturers.html"
+    },
+    {
+      "Id": "C:\\Users\\gabferrcosta\\Documents\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\wwwroot\\movements.html",
+      "PackagePath": "staticwebassets\\movements.html"
+    },
+    {
+      "Id": "C:\\Users\\gabferrcosta\\Documents\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\wwwroot\\users.html",
+      "PackagePath": "staticwebassets\\users.html"
+    },
+    {
+      "Id": "C:\\Users\\gabferrcosta\\Documents\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\wwwroot\\vehicles.html",
+      "PackagePath": "staticwebassets\\vehicles.html"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.DealershipInventorySystem.WebAPI.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.DealershipInventorySystem.WebAPI.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.DealershipInventorySystem.WebAPI.props",
+      "PackagePath": "build\\DealershipInventorySystem.WebAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.DealershipInventorySystem.WebAPI.props",
+      "PackagePath": "buildMultiTargeting\\DealershipInventorySystem.WebAPI.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.DealershipInventorySystem.WebAPI.props",
+      "PackagePath": "buildTransitive\\DealershipInventorySystem.WebAPI.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

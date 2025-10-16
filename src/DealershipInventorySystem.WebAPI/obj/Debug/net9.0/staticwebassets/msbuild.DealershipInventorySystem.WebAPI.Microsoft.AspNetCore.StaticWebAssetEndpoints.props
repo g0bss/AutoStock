@@ -1,0 +1,124 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/css/style.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\style.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-oqJCgmE3qPGdkaZpe6PpUEg\u002BIm0GLyvGxkbqWoxXetU="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"9695"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022oqJCgmE3qPGdkaZpe6PpUEg\u002BIm0GLyvGxkbqWoxXetU=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:45:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/css/style.egddkdfg7v.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\style.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"egddkdfg7v"},{"Name":"integrity","Value":"sha256-oqJCgmE3qPGdkaZpe6PpUEg\u002BIm0GLyvGxkbqWoxXetU="},{"Name":"label","Value":"_content/DealershipInventorySystem.WebAPI/css/style.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"9695"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022oqJCgmE3qPGdkaZpe6PpUEg\u002BIm0GLyvGxkbqWoxXetU=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:45:54 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/customers.7fhizdnw5p.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\customers.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"7fhizdnw5p"},{"Name":"integrity","Value":"sha256-s\u002B8DFVol854k4UH3o6VYkXXlgITpvILAjOUrw\u002B9r4T8="},{"Name":"label","Value":"_content/DealershipInventorySystem.WebAPI/customers.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"15979"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022s\u002B8DFVol854k4UH3o6VYkXXlgITpvILAjOUrw\u002B9r4T8=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:51:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/customers.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\customers.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-s\u002B8DFVol854k4UH3o6VYkXXlgITpvILAjOUrw\u002B9r4T8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"15979"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022s\u002B8DFVol854k4UH3o6VYkXXlgITpvILAjOUrw\u002B9r4T8=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:51:40 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/dashboard.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\dashboard.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-\u002B3eGJ0uUbTvMRXRKu\u002BGP0bL7Llsrd/NmBFVrkpPN/9M="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"11109"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022\u002B3eGJ0uUbTvMRXRKu\u002BGP0bL7Llsrd/NmBFVrkpPN/9M=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:33:19 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/dashboard.l4eup77ht0.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\dashboard.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"l4eup77ht0"},{"Name":"integrity","Value":"sha256-\u002B3eGJ0uUbTvMRXRKu\u002BGP0bL7Llsrd/NmBFVrkpPN/9M="},{"Name":"label","Value":"_content/DealershipInventorySystem.WebAPI/dashboard.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"11109"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022\u002B3eGJ0uUbTvMRXRKu\u002BGP0bL7Llsrd/NmBFVrkpPN/9M=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:33:19 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/index.aj9j815q8g.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"aj9j815q8g"},{"Name":"integrity","Value":"sha256-\u002Bswkk29twb/0koHGGnc4PqCKlvMiOptVnCIH5sUAc7Y="},{"Name":"label","Value":"_content/DealershipInventorySystem.WebAPI/index.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"3202"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022\u002Bswkk29twb/0koHGGnc4PqCKlvMiOptVnCIH5sUAc7Y=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:35:04 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/index.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\index.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-\u002Bswkk29twb/0koHGGnc4PqCKlvMiOptVnCIH5sUAc7Y="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3202"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022\u002Bswkk29twb/0koHGGnc4PqCKlvMiOptVnCIH5sUAc7Y=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:35:04 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/js/api.hyp1a2ailt.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\api.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"hyp1a2ailt"},{"Name":"integrity","Value":"sha256-qesGTtEm0S8liU9N0F6YoXbQp9aX3LeGY/PdCSNsDPM="},{"Name":"label","Value":"_content/DealershipInventorySystem.WebAPI/js/api.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"12895"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022qesGTtEm0S8liU9N0F6YoXbQp9aX3LeGY/PdCSNsDPM=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:44:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/js/api.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\api.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-qesGTtEm0S8liU9N0F6YoXbQp9aX3LeGY/PdCSNsDPM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"12895"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022qesGTtEm0S8liU9N0F6YoXbQp9aX3LeGY/PdCSNsDPM=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:44:56 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/login.7uv5pfq9ts.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\login.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"7uv5pfq9ts"},{"Name":"integrity","Value":"sha256-kZpWOiozoaPQk40buKG3ysFhrMuny25mOdlIOynYx04="},{"Name":"label","Value":"_content/DealershipInventorySystem.WebAPI/login.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"4270"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022kZpWOiozoaPQk40buKG3ysFhrMuny25mOdlIOynYx04=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:32:27 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/login.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\login.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-kZpWOiozoaPQk40buKG3ysFhrMuny25mOdlIOynYx04="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"4270"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022kZpWOiozoaPQk40buKG3ysFhrMuny25mOdlIOynYx04=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:32:27 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/manufacturers.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\manufacturers.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Sf\u002B59EIJJ4BbblsmMu4zp4aIEHr/K8B90sDl5nT2Zxw="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"13116"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022Sf\u002B59EIJJ4BbblsmMu4zp4aIEHr/K8B90sDl5nT2Zxw=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:47:01 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/manufacturers.pwjqgmf0t5.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\manufacturers.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"pwjqgmf0t5"},{"Name":"integrity","Value":"sha256-Sf\u002B59EIJJ4BbblsmMu4zp4aIEHr/K8B90sDl5nT2Zxw="},{"Name":"label","Value":"_content/DealershipInventorySystem.WebAPI/manufacturers.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"13116"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022Sf\u002B59EIJJ4BbblsmMu4zp4aIEHr/K8B90sDl5nT2Zxw=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:47:01 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/movements.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\movements.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-62CIg3jnh3yzrecQHvadoc/2jqir44n6lRrKGdjYTmo="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"17995"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u002262CIg3jnh3yzrecQHvadoc/2jqir44n6lRrKGdjYTmo=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:52:27 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/movements.xdaiie54ko.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\movements.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"xdaiie54ko"},{"Name":"integrity","Value":"sha256-62CIg3jnh3yzrecQHvadoc/2jqir44n6lRrKGdjYTmo="},{"Name":"label","Value":"_content/DealershipInventorySystem.WebAPI/movements.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"17995"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u002262CIg3jnh3yzrecQHvadoc/2jqir44n6lRrKGdjYTmo=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:52:27 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/users.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\users.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-p17YkzOSVKdgMXHwrNKUFdeyt5bvraWMOq7ptATvkTk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"16217"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022p17YkzOSVKdgMXHwrNKUFdeyt5bvraWMOq7ptATvkTk=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:53:12 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/users.jl6twmeiy8.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\users.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"jl6twmeiy8"},{"Name":"integrity","Value":"sha256-p17YkzOSVKdgMXHwrNKUFdeyt5bvraWMOq7ptATvkTk="},{"Name":"label","Value":"_content/DealershipInventorySystem.WebAPI/users.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"16217"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022p17YkzOSVKdgMXHwrNKUFdeyt5bvraWMOq7ptATvkTk=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:53:12 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/vehicles.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\vehicles.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-xmChzOSzh6BpY2NjsawWOsv4btYQHkqO1DlGoWj2gEQ="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"19881"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022xmChzOSzh6BpY2NjsawWOsv4btYQHkqO1DlGoWj2gEQ=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:34:29 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/DealershipInventorySystem.WebAPI/vehicles.qnbv48vedq.html">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\vehicles.html'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"qnbv48vedq"},{"Name":"integrity","Value":"sha256-xmChzOSzh6BpY2NjsawWOsv4btYQHkqO1DlGoWj2gEQ="},{"Name":"label","Value":"_content/DealershipInventorySystem.WebAPI/vehicles.html"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"19881"},{"Name":"Content-Type","Value":"text/html"},{"Name":"ETag","Value":"\u0022xmChzOSzh6BpY2NjsawWOsv4btYQHkqO1DlGoWj2gEQ=\u0022"},{"Name":"Last-Modified","Value":"Thu, 25 Sep 2025 17:34:29 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

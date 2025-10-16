@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários - AutoStock</title>
+    <link rel="stylesheet" href="/css/style.css?v=20250930120540">
+</head>
+<body>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">
+                    <img src="/imagens/Logoautostock.png?v=2025092901" alt="AutoStock" class="logo-icon"> AutoStock
+                </div>
+                <div class="sidebar-subtitle">Gestão de Estoque</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="/dashboard.html">
+                    <img src="/imagens/Dashboard.png" alt="Dashboard" class="nav-icon"> Dashboard
+                </a></li>
+                <li><a href="/vehicles.html">
+                    <img src="/imagens/Veiculos.png" alt="Veículos" class="nav-icon"> Veículos
+                </a></li>
+                <li><a href="/manufacturers.html">
+                    <img src="/imagens/Fabricantes.png" alt="Fabricantes" class="nav-icon"> Fabricantes
+                </a></li>
+                <li><a href="/customers.html">
+                    <img src="/imagens/Clientes.png" alt="Clientes" class="nav-icon"> Clientes
+                </a></li>
+                <li><a href="/movements.html">
+                    <img src="/imagens/Movimentacoes.png" alt="Movimentações" class="nav-icon"> Movimentações
+                </a></li>
+                <li><a href="/users.html" class="active">
+                    <img src="/imagens/Usuarios.png" alt="Usuários" class="nav-icon"> Usuários
+                </a></li>
+                <li><a href="javascript:void(0)" onclick="api.logout(); return false;" id="logout-btn">
+                    <img src="/imagens/Sair.png" alt="Sair" class="nav-icon"> Sair
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <h1 class="header-title">Gerenciamento de Usuários</h1>
+                <div class="user-menu">
+                    <button class="btn btn-primary" onclick="openUserModal()">
+                        <span>➕</span> Novo Usuário
+                    </button>
+                    <span class="user-name" id="user-name"></span>
+                    <div class="user-avatar" id="user-avatar">A</div>
+                </div>
+            </div>
+
+            <!-- Users Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Lista de Usuários do Sistema</h2>
+                </div>
+                <div class="card-content">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Usuário</th>
+                                    <th>Email</th>
+                                    <th>Cargo</th>
+                                    <th>Status</th>
+                                    <th>Criado em</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table">
+                                <tr>
+                                    <td colspan="7" class="text-center">Carregando usuários...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- User Modal -->
+    <div id="user-modal" class="modal-overlay" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Novo Usuário</h3>
+                <button class="modal-close" onclick="closeUserModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="user-form">
+                    <input type="hidden" id="user-id">
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="first-name" class="form-label">Nome *</label>
+                            <input type="text" id="first-name" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name" class="form-label">Sobrenome *</label>
+                            <input type="text" id="last-name" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="username" class="form-label">Nome de Usuário *</label>
+                            <input type="text" id="username" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email *</label>
+                            <input type="email" id="email" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="password" class="form-label">Senha *</label>
+                            <input type="password" id="password" class="form-input" required minlength="6">
+                            <small style="color: var(--text-secondary); font-size: 12px;">Mínimo 6 caracteres</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="role" class="form-label">Cargo *</label>
+                            <select id="role" class="form-select" required>
+                                <option value="">Selecione o cargo</option>
+                                <option value="0">Administrador</option>
+                                <option value="1">Gerente</option>
+                                <option value="2">Vendedor</option>
+                                <option value="3">Funcionário</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Telefone</label>
+                        <input type="text" id="phone" class="form-input" placeholder="(11) 99999-9999">
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" id="is-active" checked style="margin-right: 0.5rem;">
+                            Usuário ativo
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeUserModal()">Cancelar</button>
+                <button type="submit" form="user-form" class="btn btn-primary" id="save-btn">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script>
+        // === ROBUST USERS PAGE IMPLEMENTATION ===
+        console.log('👤 === USERS PAGE LOADING ===');
+
+        let pageInitialized = false;
+
+        // IMMEDIATE AUTHENTICATION CHECK
+        function checkAuth() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                console.log('❌ No auth token, redirecting to login');
+                window.location.href = '/login.html';
+                return false;
+            }
+            console.log('✅ Authentication verified');
+            return true;
+        }
+
+        // Skip old requireAuth
+        if (!checkAuth()) {
+            // Stop execution
+        }
+
+        let users = [];
+        let editingUserId = null;
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', async () => {
+            initNavigation();
+            initUserInfo();
+            await loadUsers();
+            setupEventListeners();
+        });
+
+        async function loadUsers() {
+            try {
+                users = await api.getUsers();
+                displayUsers();
+            } catch (error) {
+                console.error('Error loading users:', error);
+                utils.showError('Erro ao carregar usuários: ' + error.message);
+            }
+        }
+
+        function displayUsers() {
+            const tbody = document.getElementById('users-table');
+
+            if (users.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center">Nenhum usuário encontrado</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = users.map(user => {
+                const roleBadge = utils.getUserRoleBadge(user.role);
+
+                return `
+                    <tr>
+                        <td><strong>${user.firstName} ${user.lastName}</strong></td>
+                        <td>${user.userName}</td>
+                        <td>${user.email || '-'}</td>
+                        <td>
+                            <span class="badge ${roleBadge.class}">${roleBadge.text}</span>
+                        </td>
+                        <td>
+                            <span class="badge ${user.isActive ? 'badge-success' : 'badge-danger'}">
+                                ${user.isActive ? 'Ativo' : 'Inativo'}
+                            </span>
+                        </td>
+                        <td>${utils.formatDateOnly(user.createdAt)}</td>
+                        <td>
+                            <div class="flex gap-2">
+                                <button class="btn btn-outline" onclick="editUser(${user.id})" style="padding: 0.375rem 0.75rem;">✏️</button>
+                                <button class="btn btn-danger" onclick="deleteUser(${user.id})" style="padding: 0.375rem 0.75rem;" ${user.id === 1 ? 'disabled title="Não é possível excluir o usuário administrador principal"' : ''}>🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        window.openUserModal = function(user = null) {
+            console.log('👤 OPEN USER MODAL CLICKED', user ? 'EDIT' : 'NEW');
+            try {
+                editingUserId = user?.id || null;
+
+                const modal = document.getElementById('user-modal');
+                const title = document.getElementById('modal-title');
+
+                if (!modal || !title) {
+                    console.error('❌ Modal elements not found');
+                    alert('Erro: Modal não encontrado');
+                    return;
+                }
+
+                title.textContent = user ? 'Editar Usuário' : 'Novo Usuário';
+
+                if (user) {
+                    console.log('📝 Filling form with user data:', user);
+                    document.getElementById('user-id').value = user.id;
+                    document.getElementById('first-name').value = user.firstName || '';
+                    document.getElementById('last-name').value = user.lastName || '';
+                    document.getElementById('username').value = user.userName || '';
+                    document.getElementById('email').value = user.email || '';
+                    document.getElementById('password').value = ''; // Don't pre-fill password
+                    document.getElementById('password').removeAttribute('required'); // Remove required for edit
+                    document.getElementById('role').value = user.role ?? '';
+                    document.getElementById('phone').value = user.phone || '';
+                    document.getElementById('is-active').checked = user.isActive;
+                } else {
+                    console.log('📝 Resetting form for new user');
+                    document.getElementById('user-form').reset();
+                    document.getElementById('user-id').value = '';
+                    document.getElementById('password').setAttribute('required', 'required'); // Ensure required for new users
+                    document.getElementById('is-active').checked = true;
+                }
+
+                // Show modal with all required styles
+                modal.style.display = 'flex';
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.zIndex = '9999';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                document.body.style.overflow = 'hidden';
+
+                console.log('✅ User modal shown successfully');
+
+                // Add click outside to close
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeUserModal();
+                    }
+                });
+
+            } catch (error) {
+                console.error('❌ Error opening user modal:', error);
+                alert('Erro ao abrir modal: ' + error.message);
+            }
+        };
+
+        window.closeUserModal = function() {
+            console.log('❌ CLOSE USER MODAL CLICKED');
+            try {
+                const modal = document.getElementById('user-modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    console.log('✅ User modal closed successfully');
+                }
+                editingUserId = null;
+            } catch (error) {
+                console.error('❌ Error closing user modal:', error);
+            }
+        };
+
+        // Functions exposed globally - moved outside DOMContentLoaded for immediate availability
+
+        window.editUser = function(id) {
+            const user = users.find(u => u.id === id);
+            if (user) {
+                openUserModal(user);
+            }
+        };
+
+        async function deleteUser(id) {
+            // Prevent deletion of admin user
+            if (id === 1) {
+                utils.showError('Não é possível excluir o usuário administrador principal.');
+                return;
+            }
+
+            if (!confirm('Tem certeza que deseja excluir este usuário?')) {
+                return;
+            }
+
+            try {
+                await api.deleteUser(id);
+                users = users.filter(u => u.id !== id);
+                displayUsers();
+                utils.showSuccess('Usuário excluído com sucesso!');
+            } catch (error) {
+                console.error('Error deleting user:', error);
+                utils.showError('Erro ao excluir usuário: ' + error.message);
+            }
+        }
+
+        function setupEventListeners() {
+            document.getElementById('user-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const saveBtn = document.getElementById('save-btn');
+                const originalText = saveBtn.textContent;
+                saveBtn.disabled = true;
+                saveBtn.textContent = 'Salvando...';
+
+                try {
+                    const password = document.getElementById('password').value;
+                    const formData = {
+                        firstName: document.getElementById('first-name').value,
+                        lastName: document.getElementById('last-name').value,
+                        userName: document.getElementById('username').value,
+                        email: document.getElementById('email').value,
+                        role: parseInt(document.getElementById('role').value),
+                        phone: document.getElementById('phone').value || null,
+                        isActive: document.getElementById('is-active').checked
+                    };
+
+                    // Only include password if it's provided (for new users or password changes)
+                    if (password) {
+                        formData.password = password;
+                    }
+
+                    let savedUser;
+                    if (editingUserId) {
+                        savedUser = await api.updateUser(editingUserId, formData);
+                        const index = users.findIndex(u => u.id === editingUserId);
+                        if (index !== -1) {
+                            users[index] = savedUser;
+                        }
+                        utils.showSuccess('Usuário atualizado com sucesso!');
+                    } else {
+                        savedUser = await api.createUser(formData);
+                        users.push(savedUser);
+                        utils.showSuccess('Usuário criado com sucesso!');
+                    }
+
+                    displayUsers();
+                    closeUserModal();
+
+                } catch (error) {
+                    console.error('Error saving user:', error);
+                    utils.showError('Erro ao salvar usuário: ' + error.message);
+                } finally {
+                    saveBtn.disabled = false;
+                    saveBtn.textContent = originalText;
+                }
+            });
+
+            // Phone formatting
+            document.getElementById('phone').addEventListener('input', (e) => {
+                let value = e.target.value.replace(/\D/g, '');
+                value = value.replace(/(\d{2})(\d)/, '($1) $2');
+                value = value.replace(/(\d{4})(\d)/, '$1-$2');
+                value = value.replace(/(\d{4})-(\d)(\d{4})/, '$1$2-$3');
+                e.target.value = value;
+            });
+
+            // Username validation
+            document.getElementById('username').addEventListener('input', (e) => {
+                let value = e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, '');
+                e.target.value = value;
+            });
+
+            // Modal close on backdrop click
+            document.getElementById('user-modal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    closeUserModal();
+                }
+            });
+        }
+
+
+
+        // Global functions
+        window.deleteUser = deleteUser;
+
+        // Simple logout function
+        window.logout = function() {
+            console.log('Logout function called');
+            if (confirm('Tem certeza que deseja sair?')) {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('currentUser');
+                window.location.href = '/login.html';
+            }
+        };
+    </script>
+</body>
+</html>

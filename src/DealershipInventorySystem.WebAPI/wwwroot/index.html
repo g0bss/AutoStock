@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoStock</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1 class="login-title">
+                    <img src="/imagens/Logoautostock.png?v=2025092901" alt="AutoStock" class="logo-icon"> AutoStock
+                </h1>
+                <p class="login-subtitle">Sistema de Gestão de Estoque Automotivo</p>
+            </div>
+
+            <div style="text-align: center; margin: 2rem 0;">
+                <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">
+                    Sistema completo para gestão inteligente de estoque automotivo
+                </p>
+
+                <div style="margin-bottom: 2rem;">
+                    <a href="/login.html" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1rem;">
+                        🔐 Acessar Sistema
+                    </a>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <a href="/swagger" class="btn btn-outline" target="_blank">
+                        📚 Documentação da API
+                    </a>
+                </div>
+            </div>
+
+            <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+                <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Funcionalidades</h3>
+                <div style="display: grid; gap: 0.5rem; text-align: left; max-width: 300px; margin: 0 auto;">
+                    <div>✅ Gerenciamento de veículos</div>
+                    <div>✅ Controle de fabricantes</div>
+                    <div>✅ Cadastro de clientes</div>
+                    <div>✅ Histórico de movimentações</div>
+                    <div>✅ Controle de usuários</div>
+                    <div>✅ Autenticação JWT</div>
+                    <div>✅ API REST completa</div>
+                    <div>✅ Interface web moderna</div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                <small style="color: var(--text-secondary);">
+                    <strong>Credenciais de teste:</strong><br>
+                    Usuário: admin | Senha: Admin123!
+                </small>
+            </div>
+
+            <div style="text-align: center; margin-top: 1rem;">
+                <small style="color: var(--text-secondary);">
+                    Desenvolvido por Gabriel Ferreira Costa & Eduardo Cabral Nunes<br>
+                    CEUB - Ciência da Computação
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script>
+        // Auto-redirect if already authenticated
+        document.addEventListener('DOMContentLoaded', () => {
+            if (api.isAuthenticated()) {
+                window.location.href = '/dashboard.html';
+            }
+        });
+    </script>
+</body>
+</html>

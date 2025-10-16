@@ -1,0 +1,40 @@
+# Build artifacts
+**/bin/
+**/obj/
+**/out/
+
+# Test projects (não necessários em produção)
+tests/
+**/*Tests*
+
+# Development files
+**/.vs/
+**/.vscode/
+*.user
+*.suo
+*.cache
+
+# Documentation
+*.md
+docs/
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile*
+docker-compose*
+.dockerignore
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+# IDE temp files
+*.swp
+*.tmp
+
+# Logs
+logs/
+*.log

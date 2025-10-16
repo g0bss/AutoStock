@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Modal Functions</title>
+</head>
+<body>
+    <h1>Test Modal Functions</h1>
+    <button onclick="testManufacturerModal()">Test Manufacturer Modal</button>
+    <button onclick="testCustomerModal()">Test Customer Modal</button>
+    <button onclick="testUserModal()">Test User Modal</button>
+    <button onclick="testMovementModal()">Test Movement Modal</button>
+
+    <script>
+        function testManufacturerModal() {
+            console.log('Testing manufacturer modal...');
+            console.log('Type of window.openManufacturerModal:', typeof window.openManufacturerModal);
+            try {
+                if (window.openManufacturerModal) {
+                    alert('Found openManufacturerModal function!');
+                } else {
+                    alert('openManufacturerModal function NOT found!');
+                }
+            } catch (e) {
+                alert('Error: ' + e.message);
+            }
+        }
+
+        function testCustomerModal() {
+            console.log('Testing customer modal...');
+            console.log('Type of window.openCustomerModal:', typeof window.openCustomerModal);
+            try {
+                if (window.openCustomerModal) {
+                    alert('Found openCustomerModal function!');
+                } else {
+                    alert('openCustomerModal function NOT found!');
+                }
+            } catch (e) {
+                alert('Error: ' + e.message);
+            }
+        }
+
+        function testUserModal() {
+            console.log('Testing user modal...');
+            console.log('Type of window.openUserModal:', typeof window.openUserModal);
+            try {
+                if (window.openUserModal) {
+                    alert('Found openUserModal function!');
+                } else {
+                    alert('openUserModal function NOT found!');
+                }
+            } catch (e) {
+                alert('Error: ' + e.message);
+            }
+        }
+
+        function testMovementModal() {
+            console.log('Testing movement modal...');
+            console.log('Type of window.openMovementModal:', typeof window.openMovementModal);
+            try {
+                if (window.openMovementModal) {
+                    alert('Found openMovementModal function!');
+                } else {
+                    alert('openMovementModal function NOT found!');
+                }
+            } catch (e) {
+                alert('Error: ' + e.message);
+            }
+        }
+    </script>
+</body>
+</html>

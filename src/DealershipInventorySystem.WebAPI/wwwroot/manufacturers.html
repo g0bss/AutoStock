@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabricantes - AutoStock</title>
+    <link rel="stylesheet" href="/css/style.css?v=20250930120540">
+</head>
+<body>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">
+                    <img src="/imagens/Logoautostock.png?v=2025092901" alt="AutoStock" class="logo-icon"> AutoStock
+                </div>
+                <div class="sidebar-subtitle">Gestão de Estoque</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="/dashboard.html">
+                    <img src="/imagens/Dashboard.png" alt="Dashboard" class="nav-icon"> Dashboard
+                </a></li>
+                <li><a href="/vehicles.html">
+                    <img src="/imagens/Veiculos.png" alt="Veículos" class="nav-icon"> Veículos
+                </a></li>
+                <li><a href="/manufacturers.html" class="active">
+                    <img src="/imagens/Fabricantes.png" alt="Fabricantes" class="nav-icon"> Fabricantes
+                </a></li>
+                <li><a href="/customers.html">
+                    <img src="/imagens/Clientes.png" alt="Clientes" class="nav-icon"> Clientes
+                </a></li>
+                <li><a href="/movements.html">
+                    <img src="/imagens/Movimentacoes.png" alt="Movimentações" class="nav-icon"> Movimentações
+                </a></li>
+                <li><a href="/users.html">
+                    <img src="/imagens/Usuarios.png" alt="Usuários" class="nav-icon"> Usuários
+                </a></li>
+                <li><a href="javascript:void(0)" onclick="api.logout(); return false;" id="logout-btn">
+                    <img src="/imagens/Sair.png" alt="Sair" class="nav-icon"> Sair
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <h1 class="header-title">Gerenciamento de Fabricantes</h1>
+                <div class="user-menu">
+                    <button class="btn btn-primary" onclick="openManufacturerModal()">
+                        <span>➕</span> Novo Fabricante
+                    </button>
+                    <span class="user-name" id="user-name"></span>
+                    <div class="user-avatar" id="user-avatar">A</div>
+                </div>
+            </div>
+
+            <!-- Manufacturers Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Lista de Fabricantes</h2>
+                </div>
+                <div class="card-content">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Contato</th>
+                                    <th>Email</th>
+                                    <th>País</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="manufacturers-table">
+                                <tr>
+                                    <td colspan="6" class="text-center">Carregando fabricantes...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Manufacturer Modal -->
+    <div id="manufacturer-modal" class="modal-overlay" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Novo Fabricante</h3>
+                <button class="modal-close" onclick="window.closeManufacturerModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="manufacturer-form">
+                    <input type="hidden" id="manufacturer-id">
+
+                    <div class="form-group">
+                        <label for="name" class="form-label">Nome *</label>
+                        <input type="text" id="name" class="form-input" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contact-name" class="form-label">Nome do Contato</label>
+                        <input type="text" id="contact-name" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" id="email" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Telefone</label>
+                        <input type="text" id="phone" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country" class="form-label">País</label>
+                        <input type="text" id="country" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="website" class="form-label">Website</label>
+                        <input type="url" id="website" class="form-input" placeholder="https://exemplo.com">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="window.closeManufacturerModal()">Cancelar</button>
+                <button type="submit" form="manufacturer-form" class="btn btn-primary" id="save-btn">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script>
+        // === ROBUST MANUFACTURERS PAGE IMPLEMENTATION ===
+        console.log('🏭 === MANUFACTURERS PAGE LOADING ===');
+
+        let manufacturers = [];
+        let editingManufacturerId = null;
+        let pageInitialized = false;
+
+        // IMMEDIATE AUTHENTICATION CHECK
+        function checkAuth() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                console.log('❌ No auth token, redirecting to login');
+                window.location.href = '/login.html';
+                return false;
+            }
+            console.log('✅ Authentication verified');
+            return true;
+        }
+
+        // GLOBAL FUNCTIONS - REGISTERED IMMEDIATELY
+
+        window.logout = function() {
+            console.log('🚪 LOGOUT CLICKED');
+            if (confirm('Tem certeza que deseja sair?')) {
+                console.log('✅ User confirmed logout');
+                localStorage.clear();
+                window.location.href = '/login.html';
+            }
+        };
+
+        window.openManufacturerModal = function(manufacturer = null) {
+            console.log('🏭 OPEN MANUFACTURER MODAL CLICKED', manufacturer ? 'EDIT' : 'NEW');
+            try {
+                editingManufacturerId = manufacturer?.id || null;
+
+                const modal = document.getElementById('manufacturer-modal');
+                const title = document.getElementById('modal-title');
+
+                if (!modal || !title) {
+                    console.error('❌ Modal elements not found');
+                    alert('Erro: Modal não encontrado');
+                    return;
+                }
+
+                title.textContent = manufacturer ? 'Editar Fabricante' : 'Novo Fabricante';
+
+                if (manufacturer) {
+                    console.log('📝 Filling form with manufacturer data:', manufacturer);
+                    document.getElementById('manufacturer-id').value = manufacturer.id;
+                    document.getElementById('name').value = manufacturer.name || '';
+                    document.getElementById('contact-name').value = manufacturer.contactName || '';
+                    document.getElementById('email').value = manufacturer.email || '';
+                    document.getElementById('phone').value = manufacturer.phone || '';
+                    document.getElementById('country').value = manufacturer.country || '';
+                    document.getElementById('website').value = manufacturer.website || '';
+                } else {
+                    console.log('🆕 Clearing form for new manufacturer');
+                    const form = document.getElementById('manufacturer-form');
+                    if (form) form.reset();
+                    const hiddenId = document.getElementById('manufacturer-id');
+                    if (hiddenId) hiddenId.value = '';
+                }
+
+                // Show modal with all required styles
+                modal.style.display = 'flex';
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.zIndex = '9999';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                document.body.style.overflow = 'hidden';
+
+                console.log('✅ Modal shown successfully');
+            } catch (error) {
+                console.error('❌ Error opening modal:', error);
+                alert('Erro ao abrir modal: ' + error.message);
+            }
+        };
+
+        window.closeManufacturerModal = function() {
+            console.log('❌ CLOSE MANUFACTURER MODAL CLICKED');
+            try {
+                const modal = document.getElementById('manufacturer-modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    console.log('✅ Modal closed successfully');
+                }
+                editingManufacturerId = null;
+            } catch (error) {
+                console.error('❌ Error closing modal:', error);
+            }
+        };
+
+        window.editManufacturer = function(id) {
+            console.log('✏️ EDIT MANUFACTURER CLICKED:', id);
+            const manufacturer = manufacturers.find(m => m.id === id);
+            if (manufacturer) {
+                window.openManufacturerModal(manufacturer);
+            } else {
+                console.error('❌ Manufacturer not found:', id);
+                alert('Fabricante não encontrado');
+            }
+        };
+
+        window.deleteManufacturer = function(id) {
+            console.log('🗑️ DELETE MANUFACTURER CLICKED:', id);
+            if (confirm('Tem certeza que deseja excluir este fabricante?')) {
+                console.log('⚠️ Executing delete for manufacturer:', id);
+                deleteManufacturerAsync(id);
+            }
+        };
+
+        async function deleteManufacturerAsync(id) {
+            try {
+                await api.deleteManufacturer(id);
+                manufacturers = manufacturers.filter(m => m.id !== id);
+                displayManufacturers();
+                alert('Fabricante excluído com sucesso!');
+            } catch (error) {
+                console.error('❌ Error deleting manufacturer:', error);
+                alert('Erro ao excluir fabricante: ' + error.message);
+            }
+        }
+
+        // USER INFO UPDATE FUNCTION
+        function forceUpdateUserInfo() {
+            try {
+                const userNameElement = document.getElementById('user-name');
+                const userAvatarElement = document.getElementById('user-avatar');
+
+                if (!userNameElement || !userAvatarElement) {
+                    console.warn('⚠️ User info elements not found yet');
+                    return;
+                }
+
+                const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+                console.log('👤 Updating user info:', currentUser);
+
+                if (currentUser && Object.keys(currentUser).length > 0) {
+                    let displayName = 'Usuário';
+                    let avatarLetter = 'U';
+
+                    if (currentUser.firstName || currentUser.FirstName) {
+                        const firstName = currentUser.firstName || currentUser.FirstName;
+                        const lastName = currentUser.lastName || currentUser.LastName || '';
+                        displayName = `${firstName} ${lastName}`.trim();
+                        avatarLetter = firstName.charAt(0).toUpperCase();
+                    } else if (currentUser.fullName || currentUser.FullName) {
+                        displayName = currentUser.fullName || currentUser.FullName;
+                        avatarLetter = displayName.charAt(0).toUpperCase();
+                    } else if (currentUser.userName || currentUser.UserName) {
+                        displayName = currentUser.userName || currentUser.UserName;
+                        avatarLetter = displayName.charAt(0).toUpperCase();
+                    } else if (currentUser.email || currentUser.Email) {
+                        const email = currentUser.email || currentUser.Email;
+                        displayName = email.split('@')[0];
+                        avatarLetter = displayName.charAt(0).toUpperCase();
+                    }
+
+                    userNameElement.textContent = displayName;
+                    userAvatarElement.textContent = avatarLetter;
+                    console.log(`✅ User info updated: ${displayName} (${avatarLetter})`);
+                } else {
+                    userNameElement.textContent = 'Administrador';
+                    userAvatarElement.textContent = 'A';
+                    console.log('⚠️ Using fallback user info');
+                }
+            } catch (error) {
+                console.error('❌ Error in forceUpdateUserInfo:', error);
+            }
+        }
+
+        // DATA LOADING FUNCTIONS
+        async function loadData() {
+            console.log('📊 === LOADING DATA ===');
+            try {
+                if (!window.api) {
+                    console.warn('⚠️ API not ready, skipping data load');
+                    return;
+                }
+
+                manufacturers = await api.getManufacturers();
+                console.log(`✅ Manufacturers loaded: ${manufacturers.length}`);
+
+                displayManufacturers();
+
+            } catch (error) {
+                console.error('❌ Error loading data:', error);
+                const tbody = document.getElementById('manufacturers-table');
+                if (tbody) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="text-center">Erro ao carregar dados</td></tr>';
+                }
+            }
+        }
+
+        function displayManufacturers() {
+            const tbody = document.getElementById('manufacturers-table');
+            if (!tbody) {
+                console.error('❌ Manufacturers table not found');
+                return;
+            }
+
+            if (manufacturers.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center">Nenhum fabricante encontrado</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = manufacturers.map(manufacturer => `
+                <tr>
+                    <td><strong>${manufacturer.name}</strong></td>
+                    <td>${manufacturer.contactName || '-'}</td>
+                    <td>${manufacturer.email || '-'}</td>
+                    <td>${manufacturer.country || '-'}</td>
+                    <td>
+                        <span class="badge ${manufacturer.isActive ? 'badge-success' : 'badge-danger'}">
+                            ${manufacturer.isActive ? 'Ativo' : 'Inativo'}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="flex gap-2">
+                            <button class="btn btn-outline" onclick="editManufacturer(${manufacturer.id})" style="padding: 0.375rem 0.75rem;">✏️</button>
+                            <button class="btn btn-danger" onclick="deleteManufacturer(${manufacturer.id})" style="padding: 0.375rem 0.75rem;">🗑️</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+
+            console.log(`✅ Displayed ${manufacturers.length} manufacturers`);
+        }
+
+        // FORM SUBMISSION HANDLER
+        function setupFormHandler() {
+            const form = document.getElementById('manufacturer-form');
+            if (!form) {
+                console.warn('⚠️ Form not found yet');
+                return;
+            }
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                console.log('💾 FORM SUBMITTED');
+
+                const saveBtn = document.getElementById('save-btn');
+                const originalText = saveBtn.textContent;
+                saveBtn.disabled = true;
+                saveBtn.textContent = 'Salvando...';
+
+                try {
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        contactName: document.getElementById('contact-name').value || null,
+                        email: document.getElementById('email').value || null,
+                        phone: document.getElementById('phone').value || null,
+                        country: document.getElementById('country').value || null,
+                        website: document.getElementById('website').value || null,
+                        isActive: true
+                    };
+
+                    let savedManufacturer;
+                    if (editingManufacturerId) {
+                        savedManufacturer = await api.updateManufacturer(editingManufacturerId, formData);
+                        const index = manufacturers.findIndex(m => m.id === editingManufacturerId);
+                        if (index !== -1) {
+                            manufacturers[index] = savedManufacturer;
+                        }
+                        alert('Fabricante atualizado com sucesso!');
+                    } else {
+                        savedManufacturer = await api.createManufacturer(formData);
+                        manufacturers.push(savedManufacturer);
+                        alert('Fabricante criado com sucesso!');
+                    }
+
+                    displayManufacturers();
+                    window.closeManufacturerModal();
+
+                } catch (error) {
+                    console.error('❌ Error saving manufacturer:', error);
+                    alert('Erro ao salvar fabricante: ' + error.message);
+                } finally {
+                    saveBtn.disabled = false;
+                    saveBtn.textContent = originalText;
+                }
+            });
+
+            console.log('✅ Form handler setup complete');
+        }
+
+        // INITIALIZATION FUNCTION
+        function initializePage() {
+            if (pageInitialized) {
+                console.log('⚠️ Page already initialized');
+                return;
+            }
+
+            console.log('🚀 === INITIALIZING PAGE ===');
+
+            // Force user info update immediately
+            forceUpdateUserInfo();
+
+            // Set up repeated updates for user info
+            setInterval(forceUpdateUserInfo, 3000);
+
+            // Set up form handler
+            setupFormHandler();
+
+            // Try to load data
+            loadData();
+
+            pageInitialized = true;
+            console.log('✅ Page initialization complete');
+        }
+
+        // START EXECUTION
+        if (checkAuth()) {
+            console.log('📋 Authentication passed, starting initialization...');
+
+            // MULTIPLE DOM READY LISTENERS FOR MAXIMUM COMPATIBILITY
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initializePage);
+                console.log('📝 Added DOMContentLoaded listener');
+            } else {
+                console.log('📄 DOM already ready, initializing immediately');
+                initializePage();
+            }
+
+            // Backup initialization attempts
+            setTimeout(() => {
+                console.log('⏰ Backup initialization (1s)');
+                initializePage();
+            }, 1000);
+
+            setTimeout(() => {
+                console.log('⏰ Final backup initialization (3s)');
+                initializePage();
+            }, 3000);
+
+            console.log('🎯 === MANUFACTURERS PAGE SETUP COMPLETE ===');
+        }
+    </script>
+</body>
+</html>

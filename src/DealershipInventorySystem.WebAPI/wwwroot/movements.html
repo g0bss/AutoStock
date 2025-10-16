@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movimentações - AutoStock</title>
+    <link rel="stylesheet" href="/css/style.css?v=20251015213700">
+</head>
+<body>
+    <div class="main-layout">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-title">
+                    <img src="/imagens/Logoautostock.png?v=2025092901" alt="AutoStock" class="logo-icon"> AutoStock
+                </div>
+                <div class="sidebar-subtitle">Gestão de Estoque</div>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="/dashboard.html">
+                    <img src="/imagens/Dashboard.png" alt="Dashboard" class="nav-icon"> Dashboard
+                </a></li>
+                <li><a href="/vehicles.html">
+                    <img src="/imagens/Veiculos.png" alt="Veículos" class="nav-icon"> Veículos
+                </a></li>
+                <li><a href="/manufacturers.html">
+                    <img src="/imagens/Fabricantes.png" alt="Fabricantes" class="nav-icon"> Fabricantes
+                </a></li>
+                <li><a href="/customers.html">
+                    <img src="/imagens/Clientes.png" alt="Clientes" class="nav-icon"> Clientes
+                </a></li>
+                <li><a href="/movements.html" class="active">
+                    <img src="/imagens/Movimentacoes.png" alt="Movimentações" class="nav-icon"> Movimentações
+                </a></li>
+                <li><a href="/users.html">
+                    <img src="/imagens/Usuarios.png" alt="Usuários" class="nav-icon"> Usuários
+                </a></li>
+                <li><a href="javascript:void(0)" onclick="api.logout(); return false;" id="logout-btn">
+                    <img src="/imagens/Sair.png" alt="Sair" class="nav-icon"> Sair
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="header">
+                <h1 class="header-title">Movimentações de Veículos</h1>
+                <div class="user-menu">
+                    <button class="btn btn-primary" onclick="openMovementModal()">
+                        <span>➕</span> Nova Movimentação
+                    </button>
+                    <span class="user-name" id="user-name"></span>
+                    <div class="user-avatar" id="user-avatar">A</div>
+                </div>
+            </div>
+
+            <!-- Filter Section -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div class="card-header">
+                    <h2 class="card-title">Filtros</h2>
+                </div>
+                <div class="card-content">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div class="form-group">
+                            <label for="filter-type" class="form-label">Tipo de Movimentação</label>
+                            <select id="filter-type" class="form-select">
+                                <option value="">Todos os tipos</option>
+                                <option value="0">Entrada</option>
+                                <option value="1">Venda</option>
+                                <option value="2">Reserva</option>
+                                <option value="3">Test Drive</option>
+                                <option value="4">Manutenção</option>
+                                <option value="5">Transferência</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-vehicle" class="form-label">Veículo</label>
+                            <select id="filter-vehicle" class="form-select">
+                                <option value="">Todos os veículos</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filter-customer" class="form-label">Cliente</label>
+                            <select id="filter-customer" class="form-select">
+                                <option value="">Todos os clientes</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: end;">
+                            <button class="btn btn-outline" onclick="clearFilters()">Limpar Filtros</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Movements Table -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Histórico de Movimentações</h2>
+                </div>
+                <div class="card-content">
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Data</th>
+                                    <th>Tipo</th>
+                                    <th>Veículo</th>
+                                    <th>Cliente</th>
+                                    <th>Valor</th>
+                                    <th>Observações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="movements-table">
+                                <tr>
+                                    <td colspan="6" class="text-center">Carregando movimentações...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Movement Modal -->
+    <div id="movement-modal" class="modal-overlay" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Nova Movimentação</h3>
+                <button class="modal-close" onclick="closeMovementModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="movement-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="movement-type" class="form-label">Tipo de Movimentação *</label>
+                            <select id="movement-type" class="form-select" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="0">Entrada</option>
+                                <option value="1">Venda</option>
+                                <option value="2">Reserva</option>
+                                <option value="3">Test Drive</option>
+                                <option value="4">Manutenção</option>
+                                <option value="5">Transferência</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="movement-date" class="form-label">Data da Movimentação *</label>
+                            <input type="datetime-local" id="movement-date" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="vehicle-id" class="form-label">Veículo *</label>
+                            <select id="vehicle-id" class="form-select" required>
+                                <option value="">Carregando veículos...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-id" class="form-label">Cliente</label>
+                            <select id="customer-id" class="form-select">
+                                <option value="">Selecione um cliente (opcional)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price" class="form-label">Valor</label>
+                        <input type="number" id="price" class="form-input" step="0.01" min="0" placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes" class="form-label">Observações</label>
+                        <textarea id="notes" class="form-input" rows="3" style="min-height: 80px; resize: vertical;" placeholder="Detalhes da movimentação..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeMovementModal()">Cancelar</button>
+                <button type="submit" form="movement-form" class="btn btn-primary" id="save-btn">Registrar Movimentação</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script>
+        // === ROBUST MOVEMENTS PAGE IMPLEMENTATION ===
+        console.log('📦 === MOVEMENTS PAGE LOADING ===');
+
+        let pageInitialized = false;
+
+        // IMMEDIATE AUTHENTICATION CHECK
+        function checkAuth() {
+            const token = localStorage.getItem('authToken');
+            if (!token) {
+                console.log('❌ No auth token, redirecting to login');
+                window.location.href = '/login.html';
+                return false;
+            }
+            console.log('✅ Authentication verified');
+            return true;
+        }
+
+        // Skip old requireAuth
+        if (!checkAuth()) {
+            // Stop execution
+        }
+
+        let movements = [];
+        let vehicles = [];
+        let customers = [];
+        let filteredMovements = [];
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', async () => {
+            initNavigation();
+            initUserInfo();
+            await loadData();
+            setupEventListeners();
+
+            // Set default date to now
+            const now = new Date();
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            document.getElementById('movement-date').value = now.toISOString().slice(0, 16);
+        });
+
+        async function loadData() {
+            try {
+                // Load all data in parallel
+                [movements, vehicles, customers] = await Promise.all([
+                    api.getVehicleMovements(),
+                    api.getVehicles(),
+                    api.getCustomers()
+                ]);
+
+                populateSelects();
+                applyFilters();
+            } catch (error) {
+                console.error('Error loading data:', error);
+                utils.showError('Erro ao carregar dados: ' + error.message);
+            }
+        }
+
+        function populateSelects() {
+            // Populate vehicle selects
+            const vehicleSelects = [document.getElementById('vehicle-id'), document.getElementById('filter-vehicle')];
+            vehicleSelects.forEach((select, index) => {
+                const defaultOption = index === 0 ? 'Selecione um veículo' : 'Todos os veículos';
+                select.innerHTML = `<option value="">${defaultOption}</option>` +
+                    vehicles.map(v => `<option value="${v.id}">${v.make} ${v.model} (${v.year}) - ${v.vin}</option>`).join('');
+            });
+
+            // Populate customer selects
+            const customerSelects = [document.getElementById('customer-id'), document.getElementById('filter-customer')];
+            customerSelects.forEach((select, index) => {
+                const defaultOption = index === 0 ? 'Selecione um cliente (opcional)' : 'Todos os clientes';
+                select.innerHTML = `<option value="">${defaultOption}</option>` +
+                    customers.map(c => `<option value="${c.id}">${c.name}</option>`).join('');
+            });
+        }
+
+        function applyFilters() {
+            const typeFilter = document.getElementById('filter-type').value;
+            const vehicleFilter = document.getElementById('filter-vehicle').value;
+            const customerFilter = document.getElementById('filter-customer').value;
+
+            filteredMovements = movements.filter(movement => {
+                return (!typeFilter || movement.movementType.toString() === typeFilter) &&
+                       (!vehicleFilter || movement.vehicleId.toString() === vehicleFilter) &&
+                       (!customerFilter || (movement.customerId && movement.customerId.toString() === customerFilter));
+            });
+
+            displayMovements();
+        }
+
+        function clearFilters() {
+            document.getElementById('filter-type').value = '';
+            document.getElementById('filter-vehicle').value = '';
+            document.getElementById('filter-customer').value = '';
+            applyFilters();
+        }
+
+        function displayMovements() {
+            const tbody = document.getElementById('movements-table');
+
+            if (filteredMovements.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="text-center">Nenhuma movimentação encontrada</td></tr>';
+                return;
+            }
+
+            // Sort by date (most recent first)
+            const sortedMovements = [...filteredMovements].sort((a, b) =>
+                new Date(b.movementDate) - new Date(a.movementDate)
+            );
+
+            tbody.innerHTML = sortedMovements.map(movement => {
+                const vehicle = vehicles.find(v => v.id === movement.vehicleId);
+                const customer = customers.find(c => c.id === movement.customerId);
+
+                const movementTypes = {
+                    0: { text: 'Entrada', class: 'badge-success' },
+                    1: { text: 'Venda', class: 'badge-success' },
+                    2: { text: 'Reserva', class: 'badge-warning' },
+                    3: { text: 'Test Drive', class: 'badge-secondary' },
+                    4: { text: 'Manutenção', class: 'badge-warning' },
+                    5: { text: 'Transferência', class: 'badge-secondary' }
+                };
+
+                const movementType = movementTypes[movement.movementType] || { text: 'Desconhecido', class: 'badge-secondary' };
+
+                return `
+                    <tr>
+                        <td>${utils.formatDate(movement.movementDate)}</td>
+                        <td>
+                            <span class="badge ${movementType.class}">${movementType.text}</span>
+                        </td>
+                        <td>${vehicle ? `${vehicle.make} ${vehicle.model} (${vehicle.year})` : 'Veículo não encontrado'}</td>
+                        <td>${customer ? customer.name : '-'}</td>
+                        <td>${movement.price ? utils.formatCurrency(movement.price) : '-'}</td>
+                        <td>${movement.notes || '-'}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        window.openMovementModal = function() {
+            console.log('📦 OPEN MOVEMENT MODAL CLICKED');
+            try {
+                const modal = document.getElementById('movement-modal');
+
+                if (!modal) {
+                    console.error('❌ Modal element not found: movement-modal');
+                    alert('Erro: Modal não encontrado');
+                    return;
+                }
+
+                // Title is optional, set it if it exists
+                const title = document.getElementById('modal-title');
+                if (title) {
+                    title.textContent = 'Nova Movimentação';
+                }
+
+                console.log('📝 Resetting form for new movement');
+                const form = document.getElementById('movement-form');
+                if (form) {
+                    form.reset();
+                }
+
+                // Set default date to now
+                const now = new Date();
+                now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                const dateInput = document.getElementById('movement-date');
+                if (dateInput) {
+                    dateInput.value = now.toISOString().slice(0, 16);
+                }
+
+                // Show modal with all required styles
+                modal.style.display = 'flex';
+                modal.style.position = 'fixed';
+                modal.style.top = '0';
+                modal.style.left = '0';
+                modal.style.width = '100%';
+                modal.style.height = '100%';
+                modal.style.zIndex = '9999';
+                modal.style.alignItems = 'center';
+                modal.style.justifyContent = 'center';
+                modal.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+                document.body.style.overflow = 'hidden';
+
+                console.log('✅ Movement modal shown successfully');
+
+                // Add click outside to close
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeMovementModal();
+                    }
+                });
+
+            } catch (error) {
+                console.error('❌ Error opening movement modal:', error);
+                alert('Erro ao abrir modal: ' + error.message);
+            }
+        };
+
+        window.closeMovementModal = function() {
+            console.log('❌ CLOSE MOVEMENT MODAL CLICKED');
+            try {
+                const modal = document.getElementById('movement-modal');
+                if (modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    console.log('✅ Movement modal closed successfully');
+                }
+            } catch (error) {
+                console.error('❌ Error closing movement modal:', error);
+            }
+        };
+
+        // Functions exposed globally - moved outside DOMContentLoaded for immediate availability
+
+        function setupEventListeners() {
+            // Form submission
+            document.getElementById('movement-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const saveBtn = document.getElementById('save-btn');
+                const originalText = saveBtn.textContent;
+                saveBtn.disabled = true;
+                saveBtn.textContent = 'Salvando...';
+
+                try {
+                    const formData = {
+                        movementType: parseInt(document.getElementById('movement-type').value),
+                        movementDate: new Date(document.getElementById('movement-date').value).toISOString(),
+                        vehicleId: parseInt(document.getElementById('vehicle-id').value),
+                        customerId: document.getElementById('customer-id').value ? parseInt(document.getElementById('customer-id').value) : null,
+                        price: document.getElementById('price').value ? parseFloat(document.getElementById('price').value) : null,
+                        notes: document.getElementById('notes').value || null
+                    };
+
+                    const savedMovement = await api.createVehicleMovement(formData);
+                    movements.push(savedMovement);
+                    applyFilters();
+                    closeMovementModal();
+                    utils.showSuccess('Movimentação registrada com sucesso!');
+
+                } catch (error) {
+                    console.error('Error saving movement:', error);
+                    utils.showError('Erro ao registrar movimentação: ' + error.message);
+                } finally {
+                    saveBtn.disabled = false;
+                    saveBtn.textContent = originalText;
+                }
+            });
+
+            // Filter event listeners
+            document.getElementById('filter-type').addEventListener('change', applyFilters);
+            document.getElementById('filter-vehicle').addEventListener('change', applyFilters);
+            document.getElementById('filter-customer').addEventListener('change', applyFilters);
+
+            // Modal close on backdrop click
+            document.getElementById('movement-modal').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    closeMovementModal();
+                }
+            });
+        }
+
+
+
+        // Global functions
+        window.clearFilters = clearFilters;
+
+        // Modal functions are now defined directly on window object above
+
+        // Simple logout function
+        window.logout = function() {
+            console.log('Logout function called');
+            if (confirm('Tem certeza que deseja sair?')) {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('currentUser');
+                window.location.href = '/login.html';
+            }
+        };
+    </script>
+</body>
+</html>
