@@ -344,5 +344,3 @@ Este projeto foi desenvolvido para fins educacionais como parte da disciplina de
 - ✅ **Tratamento de erros** elegante
 - ✅ **Docker configurado** para execução fácil
 - ✅ **Documentação completa** incluindo guia Docker
-
-**Desenvolvido com ❤️ por Gabriel Ferreira Costa e Eduardo Cabral Nunes**
