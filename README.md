@@ -12,6 +12,7 @@
 ### 🎓 Informações Acadêmicas
 
 - **Instituição:** CEUB – Centro Universitário de Brasília
+- **Campus:** Taguatinga
 - **Curso:** Ciência da Computação
 - **Disciplina:** Desenvolvimento de Sistemas
 - **Semestre:** 2025/2
