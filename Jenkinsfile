@@ -92,7 +92,7 @@ pipeline {
                 sh 'docker-compose ps'
                 
                 echo 'Aplicação "implantada" com sucesso!'
-                echo 'Acesse em http://localhost:8080 (na máquina Jenkins)'
+                echo 'Acesse em http://localhost:8081 (na máquina Jenkins)'
             }
         }
     } // <-- FIM DO BLOCO 'stages'
