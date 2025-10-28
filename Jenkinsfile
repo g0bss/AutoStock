@@ -4,7 +4,11 @@ pipeline {
     // 'agent any' diz ao Jenkins para rodar em qualquer agente disponível.
     // (Vamos precisar que este agente tenha o .NET 9 SDK, Docker e Docker Compose instalados)
     agent any
-
+// --- ADICIONE ESTA SEÇÃO ---
+    environment {
+        DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 'true'
+    }
+    // --- FIM DA NOVA SEÇÃO ---
     // 2. Stages: As etapas do nosso processo de CI/CD
     stages {
         
