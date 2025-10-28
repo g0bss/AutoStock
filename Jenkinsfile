@@ -103,7 +103,7 @@ pipeline {
         always {
             echo 'Pipeline finalizado. Desligando os containers...'
             // Limpa o ambiente para a próxima execução
-            sh 'docker-compose down'
+            //sh 'docker-compose down'
         }
         success {
             echo 'Pipeline executado com SUCESSO!'
