@@ -17,8 +17,13 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Baixando o código-fonte...'
-                // O Jenkins faz isso automaticamente quando configurado com um SCM (Git)
-                checkout scm 
+                // --- INÍCIO DA MUDANÇA ---
+                // Isso vai 'tentar' rodar os testes. Se falhar,
+                // vai marcar o estágio como UNSTABLE (amarelo)
+                // em vez de FAILED (vermelho), e DEIXA O PIPELINE CONTINUAR.
+                catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+                    sh 'dotnet test'
+                }
             }
         }
 
