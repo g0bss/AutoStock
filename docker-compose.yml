@@ -35,7 +35,7 @@ services:
     build: .
     container_name: autostock_api
     ports:
-      - "8080:8080"
+      - "8081:8080"
     environment:
       - ConnectionStrings__DefaultConnection=Host=autostock_db;Port=5432;Database=AutoStock;Username=admin;Password=Admin123!
       - ASPNETCORE_ENVIRONMENT=Development
