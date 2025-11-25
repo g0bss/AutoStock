@@ -164,7 +164,11 @@ public class CustomersController : ControllerBase
             Email = createCustomerDto.Email,
             Phone = createCustomerDto.Phone,
             Address = createCustomerDto.Address,
+            City = createCustomerDto.City,
+            State = createCustomerDto.State,
+            PostalCode = createCustomerDto.PostalCode,
             CpfCnpj = createCustomerDto.CpfCnpj,
+            BirthDate = createCustomerDto.BirthDate,
             IsActive = true,
             CreatedAt = DateTime.UtcNow
         };
@@ -212,7 +216,11 @@ public class CustomersController : ControllerBase
         customer.Email = updateCustomerDto.Email;
         customer.Phone = updateCustomerDto.Phone;
         customer.Address = updateCustomerDto.Address;
+        customer.City = updateCustomerDto.City;
+        customer.State = updateCustomerDto.State;
+        customer.PostalCode = updateCustomerDto.PostalCode;
         customer.CpfCnpj = updateCustomerDto.CpfCnpj;
+        customer.BirthDate = updateCustomerDto.BirthDate;
         customer.IsActive = updateCustomerDto.IsActive;
 
         await _context.SaveChangesAsync();
@@ -333,7 +341,11 @@ public class CustomersController : ControllerBase
             Email = customer.Email,
             Phone = customer.Phone,
             Address = customer.Address,
+            City = customer.City,
+            State = customer.State,
+            PostalCode = customer.PostalCode,
             CpfCnpj = customer.CpfCnpj,
+            BirthDate = customer.BirthDate,
             IsActive = customer.IsActive,
             CreatedAt = customer.CreatedAt,
             PurchasedVehiclesCount = customer.PurchasedVehicles.Count

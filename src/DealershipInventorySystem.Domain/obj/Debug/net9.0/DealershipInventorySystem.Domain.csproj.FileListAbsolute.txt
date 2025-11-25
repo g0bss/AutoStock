@@ -22,3 +22,16 @@ C:\Users\gabfe\code\projetoDS\src\DealershipInventorySystem.Domain\obj\Debug\net
 C:\Users\gabfe\code\projetoDS\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\refint\DealershipInventorySystem.Domain.dll
 C:\Users\gabfe\code\projetoDS\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\DealershipInventorySystem.Domain.pdb
 C:\Users\gabfe\code\projetoDS\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\ref\DealershipInventorySystem.Domain.dll
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\bin\Debug\net9.0\DealershipInventorySystem.Domain.deps.json
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\bin\Debug\net9.0\DealershipInventorySystem.Domain.dll
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\bin\Debug\net9.0\DealershipInventorySystem.Domain.pdb
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\DealershipInventorySystem.Domain.csproj.AssemblyReference.cache
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\DealershipInventorySystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\DealershipInventorySystem.Domain.AssemblyInfoInputs.cache
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\DealershipInventorySystem.Domain.AssemblyInfo.cs
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\DealershipInventorySystem.Domain.csproj.CoreCompileInputs.cache
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\DealershipInventorySystem.Domain.sourcelink.json
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\DealershipInventorySystem.Domain.dll
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\refint\DealershipInventorySystem.Domain.dll
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\DealershipInventorySystem.Domain.pdb
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.Domain\obj\Debug\net9.0\ref\DealershipInventorySystem.Domain.dll

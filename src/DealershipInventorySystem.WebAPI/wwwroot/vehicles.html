@@ -133,6 +133,18 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="status" class="form-label">Status</label>
+                            <select id="status" name="status" class="form-input" required>
+                                <option value="">Selecione o status</option>
+                                <option value="0" selected>Disponível</option>
+                                <option value="1">Reservado</option>
+                                <option value="2">Vendido</option>
+                                <option value="3">Em Manutenção</option>
+                                <option value="4">Em Teste</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
                             <label for="fuel-type" class="form-label">Combustível</label>
                             <select id="fuel-type" name="fuelType" class="form-input" required>
                                 <option value="">Selecione o combustível</option>
@@ -246,6 +258,7 @@
                         'year': vehicle.year || '',
                         'color': vehicle.color || '',
                         'type': vehicle.type ?? '',
+                        'status': vehicle.status ?? '',
                         'fuel-type': vehicle.fuelType ?? '',
                         'transmission-type': vehicle.transmissionType ?? '',
                         'mileage': vehicle.mileage || '',
@@ -497,6 +510,7 @@
                         year: parseInt(document.getElementById('year').value),
                         color: document.getElementById('color').value,
                         type: parseInt(document.getElementById('type').value),
+                        status: parseInt(document.getElementById('status').value),
                         fuelType: parseInt(document.getElementById('fuel-type').value),
                         transmissionType: parseInt(document.getElementById('transmission-type').value),
                         mileage: parseInt(document.getElementById('mileage').value) || 0,
@@ -508,13 +522,7 @@
 
                     let savedVehicle;
                     if (editingVehicleId) {
-                        // For update, we need to include status field
-                        const currentVehicle = vehicles.find(v => v.id === editingVehicleId);
-                        const updateData = {
-                            ...formData,
-                            status: currentVehicle?.status ?? 0 // Keep existing status or default to Available
-                        };
-                        savedVehicle = await api.updateVehicle(editingVehicleId, updateData);
+                        savedVehicle = await api.updateVehicle(editingVehicleId, formData);
                         const index = vehicles.findIndex(v => v.id === editingVehicleId);
                         if (index !== -1) {
                             vehicles[index] = savedVehicle;

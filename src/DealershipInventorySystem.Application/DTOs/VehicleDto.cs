@@ -34,6 +34,7 @@ public record CreateVehicleDto
     public int Year { get; init; }
     public string Color { get; init; } = string.Empty;
     public VehicleType Type { get; init; }
+    public VehicleStatus Status { get; init; }
     public FuelType FuelType { get; init; }
     public TransmissionType TransmissionType { get; init; }
     public int Mileage { get; init; }

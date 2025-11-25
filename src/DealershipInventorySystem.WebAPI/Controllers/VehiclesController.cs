@@ -99,6 +99,7 @@ public class VehiclesController : ControllerBase
             Year = createVehicleDto.Year,
             Color = createVehicleDto.Color,
             Type = createVehicleDto.Type,
+            Status = createVehicleDto.Status,
             FuelType = createVehicleDto.FuelType,
             TransmissionType = createVehicleDto.TransmissionType,
             Mileage = createVehicleDto.Mileage,

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XHJHB1EYWtY=",
+  "dgSpecHash": "miJ9xmU/8H8=",
   "success": true,
-  "projectFilePath": "C:\\Users\\gabfe\\code\\projetoDS\\tests\\DealershipInventorySystem.Tests\\DealershipInventorySystem.Tests.csproj",
+  "projectFilePath": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\tests\\DealershipInventorySystem.Tests\\DealershipInventorySystem.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gabfe\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\gabfe\\.nuget\\packages\\coverlet.collector\\6.0.2\\coverlet.collector.6.0.2.nupkg.sha512",

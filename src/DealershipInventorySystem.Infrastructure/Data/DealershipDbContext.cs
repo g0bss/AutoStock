@@ -80,6 +80,9 @@ public class DealershipDbContext : DbContext
             entity.Property(c => c.Email).HasMaxLength(100);
             entity.Property(c => c.Phone).HasMaxLength(20);
             entity.Property(c => c.Address).HasMaxLength(200);
+            entity.Property(c => c.City).HasMaxLength(100);
+            entity.Property(c => c.State).HasMaxLength(50);
+            entity.Property(c => c.PostalCode).HasMaxLength(20);
             entity.Property(c => c.CpfCnpj).HasMaxLength(20);
         });
     }

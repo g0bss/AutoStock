@@ -207,7 +207,7 @@
                     console.log('📝 Filling form with customer data:', customer);
                     document.getElementById('customer-id').value = customer.id;
                     document.getElementById('name').value = customer.name || '';
-                    document.getElementById('cpf').value = customer.cpf || '';
+                    document.getElementById('cpf').value = customer.cpfCnpj || '';
                     document.getElementById('email').value = customer.email || '';
                     document.getElementById('phone').value = customer.phone || '';
                     document.getElementById('address').value = customer.address || '';
@@ -373,7 +373,7 @@
             tbody.innerHTML = customers.map(customer => `
                 <tr>
                     <td><strong>${customer.name}</strong></td>
-                    <td>${customer.cpf || '-'}</td>
+                    <td>${customer.cpfCnpj || '-'}</td>
                     <td>${customer.email || '-'}</td>
                     <td>${customer.phone || '-'}</td>
                     <td>${customer.city || '-'}</td>
@@ -410,7 +410,7 @@
                     const birthDate = document.getElementById('birth-date').value;
                     const formData = {
                         name: document.getElementById('name').value,
-                        cpf: document.getElementById('cpf').value,
+                        cpfCnpj: document.getElementById('cpf').value,
                         email: document.getElementById('email').value,
                         phone: document.getElementById('phone').value,
                         address: document.getElementById('address').value,

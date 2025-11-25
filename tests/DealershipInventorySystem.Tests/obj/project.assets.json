@@ -3956,11 +3956,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gabfe\\code\\projetoDS\\tests\\DealershipInventorySystem.Tests\\DealershipInventorySystem.Tests.csproj",
+      "projectUniqueName": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\tests\\DealershipInventorySystem.Tests\\DealershipInventorySystem.Tests.csproj",
       "projectName": "DealershipInventorySystem.Tests",
-      "projectPath": "C:\\Users\\gabfe\\code\\projetoDS\\tests\\DealershipInventorySystem.Tests\\DealershipInventorySystem.Tests.csproj",
+      "projectPath": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\tests\\DealershipInventorySystem.Tests\\DealershipInventorySystem.Tests.csproj",
       "packagesPath": "C:\\Users\\gabfe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gabfe\\code\\projetoDS\\tests\\DealershipInventorySystem.Tests\\obj\\",
+      "outputPath": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\tests\\DealershipInventorySystem.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\gabfe\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -3975,17 +3975,17 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.Application\\DealershipInventorySystem.Application.csproj": {
-              "projectPath": "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.Application\\DealershipInventorySystem.Application.csproj"
+            "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.Application\\DealershipInventorySystem.Application.csproj": {
+              "projectPath": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.Application\\DealershipInventorySystem.Application.csproj"
             },
-            "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.Domain\\DealershipInventorySystem.Domain.csproj": {
-              "projectPath": "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.Domain\\DealershipInventorySystem.Domain.csproj"
+            "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.Domain\\DealershipInventorySystem.Domain.csproj": {
+              "projectPath": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.Domain\\DealershipInventorySystem.Domain.csproj"
             },
-            "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.Infrastructure\\DealershipInventorySystem.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.Infrastructure\\DealershipInventorySystem.Infrastructure.csproj"
+            "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.Infrastructure\\DealershipInventorySystem.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.Infrastructure\\DealershipInventorySystem.Infrastructure.csproj"
             },
-            "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\DealershipInventorySystem.WebAPI.csproj": {
-              "projectPath": "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.WebAPI\\DealershipInventorySystem.WebAPI.csproj"
+            "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.WebAPI\\DealershipInventorySystem.WebAPI.csproj": {
+              "projectPath": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.WebAPI\\DealershipInventorySystem.WebAPI.csproj"
             }
           }
         }

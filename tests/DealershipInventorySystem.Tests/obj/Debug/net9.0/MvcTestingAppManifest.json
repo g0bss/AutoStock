@@ -1,6 +1,6 @@
 {
-  "DealershipInventorySystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.Application",
-  "DealershipInventorySystem.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.Domain",
-  "DealershipInventorySystem.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.Infrastructure",
-  "DealershipInventorySystem.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\gabfe\\code\\projetoDS\\src\\DealershipInventorySystem.WebAPI"
+  "DealershipInventorySystem.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.Application",
+  "DealershipInventorySystem.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.Domain",
+  "DealershipInventorySystem.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.Infrastructure",
+  "DealershipInventorySystem.WebAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "C:\\Users\\gabfe\\code\\AutoStock\\AutoStock\\src\\DealershipInventorySystem.WebAPI"
 }
