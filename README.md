@@ -113,8 +113,8 @@ docker-compose up --build
 
 ### 🌐 Acessos Após Execução
 
-- **AutoStock:** http://localhost:8080
-- **Swagger API:** http://localhost:8080/swagger
+- **AutoStock:** http://localhost:8081
+- **Swagger API:** http://localhost:8081/swagger
 - **pgAdmin:** http://localhost:5050
 
 ### 🔑 Credenciais Padrão
