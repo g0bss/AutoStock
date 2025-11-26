@@ -56,21 +56,21 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">📋 Lista de Veículos</h2>
+                    <h2 class="card-title">Lista de Veículos</h2>
                 </div>
                 <div class="card-content">
                     <div class="table-container">
-                        <table class="data-table vehicles-table">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th>VIN</th>
                                     <th>Modelo</th>
-                                    <th class="text-center">Ano</th>
+                                    <th>Ano</th>
                                     <th>Cor</th>
-                                    <th class="text-center">Tipo</th>
-                                    <th class="text-center">Status</th>
-                                    <th class="text-right">Preço de Venda</th>
-                                    <th class="text-center">Ações</th>
+                                    <th>Tipo</th>
+                                    <th>Status</th>
+                                    <th>Preço de Venda</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody id="vehicles-table">
@@ -94,137 +94,110 @@
                 <form id="vehicle-form">
                     <input type="hidden" id="vehicle-id">
 
-                    <!-- Seção: Informações Básicas -->
-                    <div class="form-section">
-                        <h4 class="form-section-title">📋 Informações Básicas</h4>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="vin" class="form-label">VIN / Chassi</label>
-                                <input type="text" id="vin" name="vin" class="form-input" required maxlength="17" placeholder="17 caracteres">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="manufacturer-id" class="form-label">Fabricante</label>
-                                <select id="manufacturer-id" name="manufacturerId" class="form-input" required>
-                                    <option value="">Selecione um fabricante</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="make" class="form-label">Marca</label>
-                                <input type="text" id="make" name="make" class="form-input" required placeholder="Ex: Ford, Chevrolet">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="model" class="form-label">Modelo</label>
-                                <input type="text" id="model" name="model" class="form-input" required placeholder="Ex: Fusion, Onix">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Seção: Características -->
-                    <div class="form-section">
-                        <h4 class="form-section-title">🎨 Características</h4>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="year" class="form-label">Ano</label>
-                                <input type="number" id="year" name="year" class="form-input" required min="1900" max="2030" placeholder="2024">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="color" class="form-label">Cor</label>
-                                <input type="text" id="color" name="color" class="form-input" required placeholder="Ex: Preto, Branco">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="type" class="form-label">Tipo</label>
-                                <select id="type" name="type" class="form-input" required>
-                                    <option value="">Selecione o tipo</option>
-                                    <option value="0">Novo</option>
-                                    <option value="1">Semi-novo</option>
-                                    <option value="2">Usado</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="status" class="form-label">Status</label>
-                                <select id="status" name="status" class="form-input" required>
-                                    <option value="">Selecione o status</option>
-                                    <option value="0" selected>Disponível</option>
-                                    <option value="1">Reservado</option>
-                                    <option value="2">Vendido</option>
-                                    <option value="3">Em Manutenção</option>
-                                    <option value="4">Em Teste</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Seção: Especificações Técnicas -->
-                    <div class="form-section">
-                        <h4 class="form-section-title">⚙️ Especificações Técnicas</h4>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="fuel-type" class="form-label">Combustível</label>
-                                <select id="fuel-type" name="fuelType" class="form-input" required>
-                                    <option value="">Selecione o combustível</option>
-                                    <option value="0">Gasolina</option>
-                                    <option value="1">Álcool</option>
-                                    <option value="2">Flex</option>
-                                    <option value="3">Diesel</option>
-                                    <option value="4">GNV</option>
-                                    <option value="5">Híbrido</option>
-                                    <option value="6">Elétrico</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="transmission-type" class="form-label">Transmissão</label>
-                                <select id="transmission-type" name="transmissionType" class="form-input" required>
-                                    <option value="">Selecione a transmissão</option>
-                                    <option value="0">Manual</option>
-                                    <option value="1">Automática</option>
-                                    <option value="2">CVT</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group form-group-full">
-                                <label for="mileage" class="form-label">Quilometragem (km)</label>
-                                <input type="number" id="mileage" name="mileage" class="form-input" min="0" placeholder="Ex: 50000">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Seção: Valores -->
-                    <div class="form-section">
-                        <h4 class="form-section-title">💰 Valores</h4>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="cost-price" class="form-label">Preço de Custo (R$)</label>
-                                <input type="number" id="cost-price" name="costPrice" class="form-input" step="0.01" min="0" placeholder="0.00">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="selling-price" class="form-label">Preço de Venda (R$) *</label>
-                                <input type="number" id="selling-price" name="sellingPrice" class="form-input" step="0.01" min="0" required placeholder="0.00">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Seção: Observações -->
-                    <div class="form-section">
-                        <h4 class="form-section-title">📝 Observações</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
                         <div class="form-group">
-                            <label for="notes" class="form-label">Observações Adicionais</label>
-                            <textarea id="notes" name="notes" class="form-input" rows="3" placeholder="Informações adicionais sobre o veículo..."></textarea>
+                            <label for="vin" class="form-label">VIN</label>
+                            <input type="text" id="vin" name="vin" class="form-input" required maxlength="17" placeholder="17 caracteres">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="manufacturer-id" class="form-label">Fabricante</label>
+                            <select id="manufacturer-id" name="manufacturerId" class="form-input" required>
+                                <option value="">Selecione um fabricante</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="make" class="form-label">Marca</label>
+                            <input type="text" id="make" name="make" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="model" class="form-label">Modelo</label>
+                            <input type="text" id="model" name="model" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="year" class="form-label">Ano</label>
+                            <input type="number" id="year" name="year" class="form-input" required min="1900" max="2030">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="color" class="form-label">Cor</label>
+                            <input type="text" id="color" name="color" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="type" class="form-label">Tipo</label>
+                            <select id="type" name="type" class="form-input" required>
+                                <option value="">Selecione o tipo</option>
+                                <option value="0">Novo</option>
+                                <option value="1">Semi-novo</option>
+                                <option value="2">Usado</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status" class="form-label">Status</label>
+                            <select id="status" name="status" class="form-input" required>
+                                <option value="">Selecione o status</option>
+                                <option value="0" selected>Disponível</option>
+                                <option value="1">Reservado</option>
+                                <option value="2">Vendido</option>
+                                <option value="3">Em Manutenção</option>
+                                <option value="4">Em Teste</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fuel-type" class="form-label">Combustível</label>
+                            <select id="fuel-type" name="fuelType" class="form-input" required>
+                                <option value="">Selecione o combustível</option>
+                                <option value="0">Gasolina</option>
+                                <option value="1">Álcool</option>
+                                <option value="2">Flex</option>
+                                <option value="3">Diesel</option>
+                                <option value="4">GNV</option>
+                                <option value="5">Híbrido</option>
+                                <option value="6">Elétrico</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transmission-type" class="form-label">Transmissão</label>
+                            <select id="transmission-type" name="transmissionType" class="form-input" required>
+                                <option value="">Selecione a transmissão</option>
+                                <option value="0">Manual</option>
+                                <option value="1">Automática</option>
+                                <option value="2">CVT</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mileage" class="form-label">Quilometragem</label>
+                            <input type="number" id="mileage" name="mileage" class="form-input" min="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cost-price" class="form-label">Preço de Custo</label>
+                            <input type="number" id="cost-price" name="costPrice" class="form-input" step="0.01" min="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="selling-price" class="form-label">Preço de Venda</label>
+                            <input type="number" id="selling-price" name="sellingPrice" class="form-input" step="0.01" min="0" required>
                         </div>
                     </div>
 
-                    <div class="modal-actions">
-                        <button type="button" class="btn btn-outline" onclick="closeVehicleModal()">Cancelar</button>
-                        <button type="submit" class="btn btn-primary" id="save-btn">Salvar Veículo</button>
+                    <div class="form-group">
+                        <label for="notes" class="form-label">Observações</label>
+                        <textarea id="notes" name="notes" class="form-input" rows="3"></textarea>
                     </div>
                 </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeVehicleModal()">Cancelar</button>
+                <button type="submit" form="vehicle-form" class="btn btn-primary" id="save-btn">Salvar</button>
             </div>
         </div>
     </div>
@@ -482,18 +455,18 @@
                 const priceFormatted = window.utils?.formatCurrency(vehicle.sellingPrice) || `R$ ${vehicle.sellingPrice}`;
 
                 return `
-                    <tr class="vehicle-row">
-                        <td><strong>${vehicle.vin || 'N/A'}</strong></td>
+                    <tr>
+                        <td>${vehicle.vin || 'N/A'}</td>
                         <td><strong>${vehicle.make || ''} ${vehicle.model || ''}</strong></td>
-                        <td class="text-center">${vehicle.year || 'N/A'}</td>
+                        <td>${vehicle.year || 'N/A'}</td>
                         <td>${vehicle.color || 'N/A'}</td>
-                        <td class="text-center"><span class="badge ${typeBadge.class}">${typeBadge.text}</span></td>
-                        <td class="text-center"><span class="badge ${statusBadge.class}">${statusBadge.text}</span></td>
-                        <td class="text-right"><strong>${priceFormatted}</strong></td>
-                        <td class="text-center">
-                            <div class="action-buttons">
-                                <button class="btn-action btn-action-edit" onclick="editVehicle(${vehicle.id})" title="Editar">✏️</button>
-                                <button class="btn-action btn-action-delete" onclick="deleteVehicle(${vehicle.id})" title="Excluir">🗑️</button>
+                        <td><span class="badge ${typeBadge.class}">${typeBadge.text}</span></td>
+                        <td><span class="badge ${statusBadge.class}">${statusBadge.text}</span></td>
+                        <td>${priceFormatted}</td>
+                        <td>
+                            <div class="flex gap-2">
+                                <button class="btn btn-outline" onclick="editVehicle(${vehicle.id})" style="padding: 0.375rem 0.75rem;">✏️</button>
+                                <button class="btn btn-danger" onclick="deleteVehicle(${vehicle.id})" style="padding: 0.375rem 0.75rem;">🗑️</button>
                             </div>
                         </td>
                     </tr>

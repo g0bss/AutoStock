@@ -241,5 +241,5 @@ C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.WebAPI\obj
 C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.WebAPI\obj\Debug\net9.0\DealershipInventorySystem.WebAPI.pdb
 C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.WebAPI\obj\Debug\net9.0\DealershipInventorySystem.WebAPI.genruntimeconfig.cache
 C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.WebAPI\obj\Debug\net9.0\ref\DealershipInventorySystem.WebAPI.dll
-C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.WebAPI\obj\Debug\net9.0\compressed\x4ybcfuxo2-dxslbm794g.gz
-C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.WebAPI\obj\Debug\net9.0\compressed\e4wfpc1fmx-9gh254hss5.gz
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.WebAPI\obj\Debug\net9.0\compressed\x4ybcfuxo2-ir2ew2fk5r.gz
+C:\Users\gabfe\code\AutoStock\AutoStock\src\DealershipInventorySystem.WebAPI\obj\Debug\net9.0\compressed\e4wfpc1fmx-1jkp4nmpsu.gz

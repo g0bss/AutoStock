@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DealershipInventorySystem.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a235686e7856a8cf905cf4c3762532bf3418e6c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dfc27fd2a40da3e98a44c65b71719e51a2a4e2a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("DealershipInventorySystem.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DealershipInventorySystem.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
