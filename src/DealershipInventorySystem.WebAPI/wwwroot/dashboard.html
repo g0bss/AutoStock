@@ -283,23 +283,25 @@
                 const customer = customers.find(c => c.id === movement.customerId);
 
                 const movementTypes = {
-                    0: 'Entrada',
-                    1: 'Venda',
-                    2: 'Reserva',
-                    3: 'Test Drive',
-                    4: 'Manutenção',
-                    5: 'Transferência'
+                    1: 'Entrada',
+                    2: 'Test Drive',
+                    3: 'Reserva',
+                    4: 'Venda',
+                    5: 'Manutenção',
+                    6: 'Transferência',
+                    7: 'Vistoria',
+                    8: 'Mudança de Status'
                 };
 
                 return `
                     <tr>
                         <td>${utils.formatDateOnly(movement.movementDate)}</td>
-                        <td>${movementTypes[movement.movementType] || 'Desconhecido'}</td>
+                        <td>${movementTypes[movement.type] || 'Desconhecido'}</td>
                         <td>${vehicle ? `${vehicle.make} ${vehicle.model} (${vehicle.year})` : 'Veículo não encontrado'}</td>
                         <td>${customer ? customer.name : movement.customerId ? 'Cliente não encontrado' : '-'}</td>
                         <td>
-                            <span class="badge ${movement.movementType === 1 ? 'badge-success' : 'badge-secondary'}">
-                                ${movementTypes[movement.movementType] || 'Desconhecido'}
+                            <span class="badge ${movement.type === 4 ? 'badge-success' : 'badge-secondary'}">
+                                ${movementTypes[movement.type] || 'Desconhecido'}
                             </span>
                         </td>
                     </tr>

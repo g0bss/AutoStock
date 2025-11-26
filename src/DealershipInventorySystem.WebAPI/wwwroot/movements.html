@@ -65,12 +65,14 @@
                             <label for="filter-type" class="form-label">Tipo de Movimentação</label>
                             <select id="filter-type" class="form-select">
                                 <option value="">Todos os tipos</option>
-                                <option value="0">Entrada</option>
-                                <option value="1">Venda</option>
-                                <option value="2">Reserva</option>
-                                <option value="3">Test Drive</option>
-                                <option value="4">Manutenção</option>
-                                <option value="5">Transferência</option>
+                                <option value="1">Entrada</option>
+                                <option value="2">Test Drive</option>
+                                <option value="3">Reserva</option>
+                                <option value="4">Venda</option>
+                                <option value="5">Manutenção</option>
+                                <option value="6">Transferência</option>
+                                <option value="7">Vistoria</option>
+                                <option value="8">Mudança de Status</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -136,12 +138,14 @@
                             <label for="movement-type" class="form-label">Tipo de Movimentação *</label>
                             <select id="movement-type" class="form-select" required>
                                 <option value="">Selecione o tipo</option>
-                                <option value="0">Entrada</option>
-                                <option value="1">Venda</option>
-                                <option value="2">Reserva</option>
-                                <option value="3">Test Drive</option>
-                                <option value="4">Manutenção</option>
-                                <option value="5">Transferência</option>
+                                <option value="1">Entrada</option>
+                                <option value="2">Test Drive</option>
+                                <option value="3">Reserva</option>
+                                <option value="4">Venda</option>
+                                <option value="5">Manutenção</option>
+                                <option value="6">Transferência</option>
+                                <option value="7">Vistoria</option>
+                                <option value="8">Mudança de Status</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -266,7 +270,7 @@
             const customerFilter = document.getElementById('filter-customer').value;
 
             filteredMovements = movements.filter(movement => {
-                return (!typeFilter || movement.movementType.toString() === typeFilter) &&
+                return (!typeFilter || movement.type.toString() === typeFilter) &&
                        (!vehicleFilter || movement.vehicleId.toString() === vehicleFilter) &&
                        (!customerFilter || (movement.customerId && movement.customerId.toString() === customerFilter));
             });
@@ -299,15 +303,17 @@
                 const customer = customers.find(c => c.id === movement.customerId);
 
                 const movementTypes = {
-                    0: { text: 'Entrada', class: 'badge-success' },
-                    1: { text: 'Venda', class: 'badge-success' },
-                    2: { text: 'Reserva', class: 'badge-warning' },
-                    3: { text: 'Test Drive', class: 'badge-secondary' },
-                    4: { text: 'Manutenção', class: 'badge-warning' },
-                    5: { text: 'Transferência', class: 'badge-secondary' }
+                    1: { text: 'Entrada', class: 'badge-success' },
+                    2: { text: 'Test Drive', class: 'badge-secondary' },
+                    3: { text: 'Reserva', class: 'badge-warning' },
+                    4: { text: 'Venda', class: 'badge-success' },
+                    5: { text: 'Manutenção', class: 'badge-warning' },
+                    6: { text: 'Transferência', class: 'badge-secondary' },
+                    7: { text: 'Vistoria', class: 'badge-secondary' },
+                    8: { text: 'Mudança de Status', class: 'badge-secondary' }
                 };
 
-                const movementType = movementTypes[movement.movementType] || { text: 'Desconhecido', class: 'badge-secondary' };
+                const movementType = movementTypes[movement.type] || { text: 'Desconhecido', class: 'badge-secondary' };
 
                 return `
                     <tr>
@@ -411,7 +417,7 @@
 
                 try {
                     const formData = {
-                        movementType: parseInt(document.getElementById('movement-type').value),
+                        type: parseInt(document.getElementById('movement-type').value),
                         movementDate: new Date(document.getElementById('movement-date').value).toISOString(),
                         vehicleId: parseInt(document.getElementById('vehicle-id').value),
                         customerId: document.getElementById('customer-id').value ? parseInt(document.getElementById('customer-id').value) : null,

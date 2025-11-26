@@ -257,6 +257,40 @@ public class UsersController : ControllerBase
     }
 
     /// <summary>
+    /// Exclui permanentemente um usuário (apenas Administradores)
+    /// </summary>
+    [HttpDelete("{id}")]
+    [Authorize(Roles = "Administrator")]
+    public async Task<IActionResult> DeleteUser(int id)
+    {
+        var user = await _context.Users.FindAsync(id);
+
+        if (user == null)
+        {
+            return NotFound("Usuário não encontrado");
+        }
+
+        var currentUserId = GetCurrentUserId();
+
+        // Impedir auto-exclusão
+        if (currentUserId == id)
+        {
+            return BadRequest("Você não pode excluir sua própria conta");
+        }
+
+        // Impedir exclusão do usuário admin principal
+        if (id == 1)
+        {
+            return BadRequest("Não é possível excluir o usuário administrador principal");
+        }
+
+        _context.Users.Remove(user);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+    /// <summary>
     /// Altera a senha do usuário
     /// </summary>
     [HttpPatch("{id}/change-password")]
